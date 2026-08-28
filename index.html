@@ -27,7 +27,7 @@
     justify-content:center;
     padding: 32px 16px;
   }
-  .app{ width:100%; max-width: 640px; }
+  .app{ width:100%; max-width: 820px; }
   .eyebrow{
     text-align:center; letter-spacing: 0.28em; text-transform: uppercase;
     font-size: 11px; color: var(--gold-light); margin-bottom: 6px;
@@ -44,9 +44,16 @@
     text-align:center; font-size: 11px; color: rgba(244,236,216,0.35);
     margin: -18px 0 22px; letter-spacing: 0.02em;
   }
+  .ornament{
+    display:flex; align-items:center; justify-content:center; gap: 14px;
+    margin: 0 auto 18px; opacity: 0.55;
+  }
+  .ornament svg{ width:16px; height:16px; }
+  .ornament .rule{ height:1px; width: 60px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+  .ornament.bottom{ margin: 30px auto 0; }
   .card{
     background: linear-gradient(180deg, var(--ink-2), var(--ink));
-    border: 1px solid var(--line); border-radius: 4px; padding: 36px 30px;
+    border: 1px solid var(--line); border-radius: 4px; padding: 44px 56px;
     position: relative; box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
   }
   .card::before{
@@ -59,8 +66,9 @@
     color: var(--gold-light); margin: 0 0 12px;
   }
   .theme-grid{
-    display:grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 26px;
+    display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 26px;
   }
+  @media (max-width: 700px){ .theme-grid{ grid-template-columns: 1fr 1fr; } }
   @media (max-width: 480px){ .theme-grid{ grid-template-columns: 1fr; } }
   .theme-chip{
     display:flex; align-items:center; gap:10px;
@@ -163,6 +171,13 @@
 <body>
 
 <div class="app">
+  <div class="ornament">
+    <span class="rule"></span>
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2V22M6 8H18" stroke="#c9a24a" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>
+    <span class="rule"></span>
+  </div>
   <div class="eyebrow">Fé em Perguntas</div>
   <h1>Quiz Católico</h1>
   <p class="subtitle">Quanto você conhece da doutrina, da Escritura e da Tradição?</p>
@@ -203,6 +218,14 @@
       <div class="review" id="review-container"></div>
       <button class="restart-btn" id="restart-btn">Escolher outro quiz</button>
     </div>
+  </div>
+
+  <div class="ornament bottom">
+    <span class="rule"></span>
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="9" stroke="#c9a24a" stroke-width="1.4"/>
+    </svg>
+    <span class="rule"></span>
   </div>
 </div>
 
