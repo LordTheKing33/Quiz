@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz da Fé</title>
+<style>
+  :root{
+    --ink: #10121c;
+    --ink-2: #181b2b;
+    --gold: #c9a24a;
+    --gold-light: #e6cd8a;
+    --parchment: #f4ecd8;
+    --red: #7a1f2b;
+    --green: #2f6b4f;
+    --line: rgba(230,205,138,0.18);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: radial-gradient(ellipse at top, #1b1e30 0%, var(--ink) 60%);
+    font-family: 'Iowan Old Style','Palatino Linotype',Georgia,serif;
+    color: var(--parchment);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 32px 16px;
+  }
+  .app{
+    width:100%;
+    max-width: 640px;
+  }
+  .eyebrow{
+    text-align:center;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: var(--gold-light);
+    font-family: Georgia, serif;
+    margin-bottom: 6px;
+  }
+  h1{
+    text-align:center;
+    font-size: 30px;
+    font-weight: 400;
+    margin: 0 0 4px;
+    color: var(--gold-light);
+    letter-spacing: 0.02em;
+  }
+  .subtitle{
+    text-align:center;
+    color: rgba(244,236,216,0.55);
+    font-size: 14px;
+    margin-bottom: 28px;
+    font-style: italic;
+  }
+  .card{
+    background: linear-gradient(180deg, var(--ink-2), var(--ink));
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 36px 30px;
+    position: relative;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
+  }
+  .card::before{
+    content:"";
+    position:absolute;
+    top:0; left:0; right:0;
+    height:3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .progress-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom: 22px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(244,236,216,0.5);
+  }
+  .progress-track{
+    height: 3px;
+    background: rgba(230,205,138,0.12);
+    border-radius: 2px;
+    overflow:hidden;
+    margin-bottom: 26px;
+  }
+  .progress-fill{
+    height:100%;
+    background: var(--gold);
+    transition: width 0.4s ease;
+  }
+  .question{
+    font-size: 21px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+    color: var(--parchment);
+  }
+  .options{
+    display:flex;
+    flex-direction:column;
+    gap: 11px;
+  }
+  .option{
+    text-align:left;
+    padding: 14px 18px;
+    background: rgba(244,236,216,0.03);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    color: var(--parchment);
+    font-family: inherit;
+    font-size: 15.5px;
+    cursor:pointer;
+    transition: all 0.2s ease;
+    display:flex;
+    align-items:center;
+    gap: 12px;
+  }
+  .option:hover:not(:disabled){
+    border-color: var(--gold);
+    background: rgba(201,162,74,0.08);
+  }
+  .option .letter{
+    width: 22px; height:22px;
+    border:1px solid var(--gold);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size: 11px;
+    color: var(--gold-light);
+    flex-shrink:0;
+  }
+  .option.correct{
+    border-color: var(--green);
+    background: rgba(47,107,79,0.18);
+  }
+  .option.correct .letter{ border-color: var(--green); background: var(--green); color: #fff; }
+  .option.wrong{
+    border-color: var(--red);
+    background: rgba(122,31,43,0.18);
+  }
+  .option.wrong .letter{ border-color: var(--red); background: var(--red); color: #fff; }
+  .option:disabled{ cursor: default; }
+  .feedback{
+    margin-top:18px;
+    font-size: 13.5px;
+    line-height:1.6;
+    color: rgba(244,236,216,0.65);
+    font-style: italic;
+    border-left: 2px solid var(--gold);
+    padding-left: 12px;
+    min-height: 20px;
+  }
+  .next-btn{
+    margin-top: 26px;
+    width:100%;
+    padding: 13px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    font-family: inherit;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 12px;
+    border-radius: 3px;
+    cursor:pointer;
+    opacity:0;
+    pointer-events:none;
+    transition: all 0.25s ease;
+  }
+  .next-btn.show{ opacity:1; pointer-events:auto; }
+  .next-btn:hover{ background: var(--gold); color: var(--ink); }
+
+  /* Results */
+  .result-score{
+    text-align:center;
+    margin-bottom: 8px;
+  }
+  .result-score .num{
+    font-size: 54px;
+    color: var(--gold-light);
+    font-weight:400;
+  }
+  .result-score .of{
+    font-size: 16px;
+    color: rgba(244,236,216,0.5);
+  }
+  .result-msg{
+    text-align:center;
+    font-style: italic;
+    color: rgba(244,236,216,0.6);
+    margin-bottom: 30px;
+    font-size: 14px;
+  }
+  .review{
+    display:flex;
+    flex-direction:column;
+    gap: 14px;
+    margin-bottom: 26px;
+  }
+  .review-item{
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--gold);
+    padding: 14px 16px;
+    border-radius: 3px;
+    background: rgba(244,236,216,0.02);
+  }
+  .review-item.miss{ border-left-color: var(--red); }
+  .review-q{
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: var(--parchment);
+  }
+  .review-a{
+    font-size: 13px;
+    color: rgba(244,236,216,0.55);
+  }
+  .review-a .tag{
+    color: var(--green);
+    font-style: normal;
+  }
+  .review-item.miss .review-a .your{
+    color: var(--red);
+  }
+  .restart-btn{
+    width:100%;
+    padding: 13px;
+    background: var(--gold);
+    border:none;
+    color: var(--ink);
+    font-family: inherit;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 12px;
+    border-radius: 3px;
+    cursor:pointer;
+    font-weight:600;
+  }
+  .hidden{ display:none; }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="eyebrow">Fé em Perguntas</div>
+  <h1>Quiz Católico</h1>
+  <p class="subtitle">Quanto você conhece da doutrina, da Escritura e da Tradição?</p>
+
+  <div class="card">
+    <!-- QUIZ VIEW -->
+    <div id="quiz-view">
+      <div class="progress-row">
+        <span id="progress-label">Pergunta 1 de 8</span>
+        <span id="score-label">Acertos: 0</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+
+      <div class="question" id="question-text"></div>
+      <div class="options" id="options-container"></div>
+      <div class="feedback" id="feedback-text"></div>
+      <button class="next-btn" id="next-btn">Próxima pergunta →</button>
+    </div>
+
+    <!-- RESULTS VIEW -->
+    <div id="result-view" class="hidden">
+      <div class="result-score">
+        <span class="num" id="final-score">0</span>
+        <span class="of" id="final-of">/ 8</span>
+      </div>
+      <p class="result-msg" id="result-msg"></p>
+      <div class="review" id="review-container"></div>
+      <button class="restart-btn" id="restart-btn">Refazer o quiz</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const QUESTIONS = [
+  {
+    q: "Quantos sacramentos a Igreja Católica reconhece?",
+    options: ["Cinco", "Sete", "Nove", "Três"],
+    correct: 1,
+    explain: "São sete: Batismo, Confirmação, Eucaristia, Reconciliação, Unção dos Enfermos, Ordem e Matrimônio."
+  },
+  {
+    q: "Qual concílio definiu o cânon oficial dos livros da Bíblia para os católicos?",
+    options: ["Concílio de Trento", "Concílio de Niceia", "Concílio Vaticano I", "Concílio de Éfeso"],
+    correct: 0,
+    explain: "O Concílio de Trento (1546) confirmou definitivamente o cânon de 73 livros diante da Reforma Protestante."
+  },
+  {
+    q: "Quem foi o primeiro Papa, segundo a Tradição católica?",
+    options: ["São Paulo", "São João", "São Pedro", "Santo André"],
+    correct: 2,
+    explain: "São Pedro é considerado o primeiro Papa, a partir do texto de Mateus 16,18."
+  },
+  {
+    q: "O que significa a palavra 'Eucaristia'?",
+    options: ["Sacrifício", "Ação de graças", "Comunhão", "Oferenda"],
+    correct: 1,
+    explain: "Vem do grego 'eucharistia', que significa ação de graças."
+  },
+  {
+    q: "Qual é o dogma mariano celebrado em 8 de dezembro?",
+    options: ["Assunção de Maria", "Imaculada Conceição", "Maternidade Divina", "Visitação"],
+    correct: 1,
+    explain: "A Imaculada Conceição afirma que Maria foi concebida sem o pecado original."
+  },
+  {
+    q: "Quantos mistérios tem o Rosário, incluindo os Luminosos?",
+    options: ["12", "15", "20", "25"],
+    correct: 2,
+    explain: "São 20 mistérios: Gozosos, Luminosos, Dolorosos e Gloriosos (5 cada)."
+  },
+  {
+    q: "Qual santo é conhecido como 'Doutor Angélico'?",
+    options: ["Santo Agostinho", "São Tomás de Aquino", "São Boaventura", "São Jerônimo"],
+    correct: 1,
+    explain: "São Tomás de Aquino, autor da Suma Teológica, recebeu esse título por sua obra filosófico-teológica."
+  },
+  {
+    q: "O que é a 'Transubstanciação'?",
+    options: [
+      "A transformação espiritual do fiel após a comunhão",
+      "A mudança da substância do pão e do vinho no Corpo e Sangue de Cristo",
+      "A passagem da alma para o Purgatório",
+      "A conversão de um não-católico à fé"
+    ],
+    correct: 1,
+    explain: "É o termo teológico para a conversão real do pão e do vinho no Corpo e Sangue de Cristo na Missa."
+  }
+];
+
+let current = 0;
+let score = 0;
+let answered = false;
+const userAnswers = [];
+
+const questionText = document.getElementById('question-text');
+const optionsContainer = document.getElementById('options-container');
+const feedbackText = document.getElementById('feedback-text');
+const nextBtn = document.getElementById('next-btn');
+const progressLabel = document.getElementById('progress-label');
+const scoreLabel = document.getElementById('score-label');
+const progressFill = document.getElementById('progress-fill');
+
+function renderQuestion(){
+  answered = false;
+  feedbackText.textContent = '';
+  nextBtn.classList.remove('show');
+  const item = QUESTIONS[current];
+  questionText.textContent = item.q;
+  progressLabel.textContent = `Pergunta ${current+1} de ${QUESTIONS.length}`;
+  scoreLabel.textContent = `Acertos: ${score}`;
+  progressFill.style.width = `${(current/QUESTIONS.length)*100}%`;
+
+  optionsContainer.innerHTML = '';
+  const letters = ['A','B','C','D'];
+  item.options.forEach((opt, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'option';
+    btn.innerHTML = `<span class="letter">${letters[idx]}</span><span>${opt}</span>`;
+    btn.addEventListener('click', () => selectAnswer(idx));
+    optionsContainer.appendChild(btn);
+  });
+}
+
+function selectAnswer(idx){
+  if(answered) return;
+  answered = true;
+  const item = QUESTIONS[current];
+  const allOptions = optionsContainer.querySelectorAll('.option');
+  allOptions.forEach(o => o.disabled = true);
+
+  const isCorrect = idx === item.correct;
+  if(isCorrect) score++;
+
+  allOptions[item.correct].classList.add('correct');
+  if(!isCorrect) allOptions[idx].classList.add('wrong');
+
+  feedbackText.textContent = item.explain;
+  userAnswers.push({ chosen: idx, correct: item.correct, item });
+
+  nextBtn.classList.add('show');
+  scoreLabel.textContent = `Acertos: ${score}`;
+}
+
+nextBtn.addEventListener('click', () => {
+  current++;
+  if(current < QUESTIONS.length){
+    renderQuestion();
+  } else {
+    showResults();
+  }
+});
+
+function showResults(){
+  document.getElementById('quiz-view').classList.add('hidden');
+  document.getElementById('result-view').classList.remove('hidden');
+  document.getElementById('final-score').textContent = score;
+  document.getElementById('final-of').textContent = `/ ${QUESTIONS.length}`;
+
+  let msg;
+  const pct = score / QUESTIONS.length;
+  if(pct === 1) msg = "Conhecimento sólido como a Rocha de Pedro!";
+  else if(pct >= 0.7) msg = "Muito bem! A fé busca compreensão — e você já entende bastante.";
+  else if(pct >= 0.4) msg = "Bom começo. Vale aprofundar um pouco mais no catecismo.";
+  else msg = "Todo santo tem um passado — hora de estudar mais a doutrina!";
+  document.getElementById('result-msg').textContent = msg;
+
+  const reviewContainer = document.getElementById('review-container');
+  reviewContainer.innerHTML = '';
+  userAnswers.forEach((ans, i) => {
+    const item = ans.item;
+    const isCorrect = ans.chosen === ans.correct;
+    const div = document.createElement('div');
+    div.className = 'review-item' + (isCorrect ? '' : ' miss');
+    div.innerHTML = `
+      <div class="review-q">${i+1}. ${item.q}</div>
+      <div class="review-a">
+        ${isCorrect
+          ? `<span class="tag">✓ Você acertou:</span> ${item.options[ans.correct]}`
+          : `<span class="your">✗ Você respondeu:</span> ${item.options[ans.chosen]} — <span class="tag">correta:</span> ${item.options[ans.correct]}`
+        }
+      </div>
+    `;
+    reviewContainer.appendChild(div);
+  });
+}
+
+document.getElementById('restart-btn').addEventListener('click', () => {
+  current = 0; score = 0; answered = false;
+  userAnswers.length = 0;
+  document.getElementById('result-view').classList.add('hidden');
+  document.getElementById('quiz-view').classList.remove('hidden');
+  renderQuestion();
+});
+
+renderQuestion();
+</script>
+
+</body>
+</html>
