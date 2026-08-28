@@ -27,220 +27,137 @@
     justify-content:center;
     padding: 32px 16px;
   }
-  .app{
-    width:100%;
-    max-width: 640px;
-  }
+  .app{ width:100%; max-width: 640px; }
   .eyebrow{
-    text-align:center;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    font-size: 11px;
-    color: var(--gold-light);
-    font-family: Georgia, serif;
-    margin-bottom: 6px;
+    text-align:center; letter-spacing: 0.28em; text-transform: uppercase;
+    font-size: 11px; color: var(--gold-light); margin-bottom: 6px;
   }
   h1{
-    text-align:center;
-    font-size: 30px;
-    font-weight: 400;
-    margin: 0 0 4px;
-    color: var(--gold-light);
-    letter-spacing: 0.02em;
+    text-align:center; font-size: 30px; font-weight: 400; margin: 0 0 4px;
+    color: var(--gold-light); letter-spacing: 0.02em;
   }
   .subtitle{
-    text-align:center;
-    color: rgba(244,236,216,0.55);
-    font-size: 14px;
-    margin-bottom: 28px;
-    font-style: italic;
+    text-align:center; color: rgba(244,236,216,0.55); font-size: 14px;
+    margin-bottom: 28px; font-style: italic;
+  }
+  .ai-disclaimer{
+    text-align:center; font-size: 11px; color: rgba(244,236,216,0.35);
+    margin: -18px 0 22px; letter-spacing: 0.02em;
   }
   .card{
     background: linear-gradient(180deg, var(--ink-2), var(--ink));
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    padding: 36px 30px;
-    position: relative;
-    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
+    border: 1px solid var(--line); border-radius: 4px; padding: 36px 30px;
+    position: relative; box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
   }
   .card::before{
-    content:"";
-    position:absolute;
-    top:0; left:0; right:0;
-    height:3px;
+    content:""; position:absolute; top:0; left:0; right:0; height:3px;
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
   }
+
+  .setup-label{
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold-light); margin: 0 0 12px;
+  }
+  .theme-grid{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 26px;
+  }
+  @media (max-width: 480px){ .theme-grid{ grid-template-columns: 1fr; } }
+  .theme-chip{
+    display:flex; align-items:center; gap:10px;
+    padding: 12px 14px; border: 1px solid var(--line); border-radius: 3px;
+    background: rgba(244,236,216,0.03); cursor:pointer; font-size: 14px;
+    transition: all 0.2s ease; color: var(--parchment);
+  }
+  .theme-chip:hover{ border-color: var(--gold); }
+  .theme-chip.active{ border-color: var(--gold); background: rgba(201,162,74,0.1); }
+  .theme-chip .box{
+    width:16px; height:16px; border:1px solid var(--gold); border-radius:2px;
+    flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:11px;
+  }
+  .theme-chip.active .box{ background: var(--gold); color: var(--ink); }
+  .theme-chip .count{ margin-left:auto; font-size:11px; color: rgba(244,236,216,0.45); }
+
+  .count-row{ display:flex; gap:10px; margin-bottom: 30px; flex-wrap: wrap; }
+  .count-btn{
+    flex:1; min-width: 64px; padding: 12px 8px; border:1px solid var(--line);
+    background: rgba(244,236,216,0.03); color: var(--parchment); border-radius:3px;
+    cursor:pointer; font-family:inherit; font-size:14px; transition: all 0.2s ease;
+  }
+  .count-btn:hover{ border-color: var(--gold); }
+  .count-btn.active{ border-color: var(--gold); background: var(--gold); color: var(--ink); font-weight:600; }
+
+  .start-btn{
+    width:100%; padding: 15px; background: var(--gold); border:none; color: var(--ink);
+    font-family: inherit; letter-spacing: 0.1em; text-transform: uppercase; font-size: 13px;
+    border-radius: 3px; cursor:pointer; font-weight:600; transition: opacity 0.2s ease;
+  }
+  .start-btn:disabled{ opacity:0.35; cursor: not-allowed; }
+  .setup-error{ text-align:center; font-size:12.5px; color: var(--gold-light); margin: -14px 0 18px; min-height:16px; }
+
   .progress-row{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom: 22px;
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(244,236,216,0.5);
+    display:flex; justify-content:space-between; align-items:center; margin-bottom: 22px;
+    font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(244,236,216,0.5);
   }
   .progress-track{
-    height: 3px;
-    background: rgba(230,205,138,0.12);
-    border-radius: 2px;
-    overflow:hidden;
-    margin-bottom: 26px;
+    height: 3px; background: rgba(230,205,138,0.12); border-radius: 2px; overflow:hidden; margin-bottom: 26px;
   }
-  .progress-fill{
-    height:100%;
-    background: var(--gold);
-    transition: width 0.4s ease;
+  .progress-fill{ height:100%; background: var(--gold); transition: width 0.4s ease; }
+  .theme-tag{
+    display:inline-block; font-size: 10.5px; letter-spacing:0.08em; text-transform:uppercase;
+    color: var(--gold-light); border: 1px solid var(--line); padding: 3px 9px; border-radius: 20px;
+    margin-bottom: 14px;
   }
-  .question{
-    font-size: 21px;
-    line-height: 1.5;
-    margin-bottom: 24px;
-    color: var(--parchment);
-  }
-  .options{
-    display:flex;
-    flex-direction:column;
-    gap: 11px;
-  }
+  .question{ font-size: 21px; line-height: 1.5; margin-bottom: 24px; color: var(--parchment); }
+  .options{ display:flex; flex-direction:column; gap: 11px; }
   .option{
-    text-align:left;
-    padding: 14px 18px;
-    background: rgba(244,236,216,0.03);
-    border: 1px solid var(--line);
-    border-radius: 3px;
-    color: var(--parchment);
-    font-family: inherit;
-    font-size: 15.5px;
-    cursor:pointer;
-    transition: all 0.2s ease;
-    display:flex;
-    align-items:center;
-    gap: 12px;
+    text-align:left; padding: 14px 18px; background: rgba(244,236,216,0.03);
+    border: 1px solid var(--line); border-radius: 3px; color: var(--parchment);
+    font-family: inherit; font-size: 15.5px; cursor:pointer; transition: all 0.2s ease;
+    display:flex; align-items:center; gap: 12px;
   }
-  .option:hover:not(:disabled){
-    border-color: var(--gold);
-    background: rgba(201,162,74,0.08);
-  }
+  .option:hover:not(:disabled){ border-color: var(--gold); background: rgba(201,162,74,0.08); }
   .option .letter{
-    width: 22px; height:22px;
-    border:1px solid var(--gold);
-    border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    font-size: 11px;
-    color: var(--gold-light);
-    flex-shrink:0;
+    width: 22px; height:22px; border:1px solid var(--gold); border-radius:50%;
+    display:flex;align-items:center;justify-content:center; font-size: 11px; color: var(--gold-light); flex-shrink:0;
   }
-  .option.correct{
-    border-color: var(--green);
-    background: rgba(47,107,79,0.18);
-  }
+  .option.correct{ border-color: var(--green); background: rgba(47,107,79,0.18); }
   .option.correct .letter{ border-color: var(--green); background: var(--green); color: #fff; }
-  .option.wrong{
-    border-color: var(--red);
-    background: rgba(122,31,43,0.18);
-  }
+  .option.wrong{ border-color: var(--red); background: rgba(122,31,43,0.18); }
   .option.wrong .letter{ border-color: var(--red); background: var(--red); color: #fff; }
   .option:disabled{ cursor: default; }
   .feedback{
-    margin-top:18px;
-    font-size: 13.5px;
-    line-height:1.6;
-    color: rgba(244,236,216,0.65);
-    font-style: italic;
-    border-left: 2px solid var(--gold);
-    padding-left: 12px;
-    min-height: 20px;
+    margin-top:18px; font-size: 13.5px; line-height:1.6; color: rgba(244,236,216,0.65);
+    font-style: italic; border-left: 2px solid var(--gold); padding-left: 12px; min-height: 20px;
   }
   .next-btn{
-    margin-top: 26px;
-    width:100%;
-    padding: 13px;
-    background: transparent;
-    border: 1px solid var(--gold);
-    color: var(--gold-light);
-    font-family: inherit;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-size: 12px;
-    border-radius: 3px;
-    cursor:pointer;
-    opacity:0;
-    pointer-events:none;
-    transition: all 0.25s ease;
+    margin-top: 26px; width:100%; padding: 13px; background: transparent; border: 1px solid var(--gold);
+    color: var(--gold-light); font-family: inherit; letter-spacing: 0.12em; text-transform: uppercase;
+    font-size: 12px; border-radius: 3px; cursor:pointer; opacity:0; pointer-events:none; transition: all 0.25s ease;
   }
   .next-btn.show{ opacity:1; pointer-events:auto; }
   .next-btn:hover{ background: var(--gold); color: var(--ink); }
 
-  /* Results */
-  .result-score{
-    text-align:center;
-    margin-bottom: 8px;
-  }
-  .result-score .num{
-    font-size: 54px;
-    color: var(--gold-light);
-    font-weight:400;
-  }
-  .result-score .of{
-    font-size: 16px;
-    color: rgba(244,236,216,0.5);
-  }
-  .result-msg{
-    text-align:center;
-    font-style: italic;
-    color: rgba(244,236,216,0.6);
-    margin-bottom: 30px;
-    font-size: 14px;
-  }
-  .review{
-    display:flex;
-    flex-direction:column;
-    gap: 14px;
-    margin-bottom: 26px;
-  }
+  .result-score{ text-align:center; margin-bottom: 8px; }
+  .result-score .num{ font-size: 54px; color: var(--gold-light); font-weight:400; }
+  .result-score .of{ font-size: 16px; color: rgba(244,236,216,0.5); }
+  .result-msg{ text-align:center; font-style: italic; color: rgba(244,236,216,0.6); margin-bottom: 30px; font-size: 14px; }
+  .review{ display:flex; flex-direction:column; gap: 14px; margin-bottom: 26px; }
   .review-item{
-    border: 1px solid var(--line);
-    border-left: 3px solid var(--gold);
-    padding: 14px 16px;
-    border-radius: 3px;
-    background: rgba(244,236,216,0.02);
+    border: 1px solid var(--line); border-left: 3px solid var(--gold); padding: 14px 16px;
+    border-radius: 3px; background: rgba(244,236,216,0.02);
   }
   .review-item.miss{ border-left-color: var(--red); }
-  .review-q{
-    font-size: 14px;
-    margin-bottom: 6px;
-    color: var(--parchment);
-  }
-  .review-a{
-    font-size: 13px;
-    color: rgba(244,236,216,0.55);
-  }
-  .review-a .tag{
-    color: var(--green);
-    font-style: normal;
-  }
-  .review-item.miss .review-a .your{
-    color: var(--red);
-  }
+  .review-q{ font-size: 14px; margin-bottom: 6px; color: var(--parchment); }
+  .review-a{ font-size: 13px; color: rgba(244,236,216,0.55); }
+  .review-a .tag{ color: var(--green); font-style: normal; }
+  .review-item.miss .review-a .your{ color: var(--red); }
   .restart-btn{
-    width:100%;
-    padding: 13px;
-    background: var(--gold);
-    border:none;
-    color: var(--ink);
-    font-family: inherit;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-size: 12px;
-    border-radius: 3px;
-    cursor:pointer;
-    font-weight:600;
+    width:100%; padding: 13px; background: var(--gold); border:none; color: var(--ink);
+    font-family: inherit; letter-spacing: 0.1em; text-transform: uppercase; font-size: 12px;
+    border-radius: 3px; cursor:pointer; font-weight:600;
   }
   .hidden{ display:none; }
-  @media (prefers-reduced-motion: reduce){
-    *{ transition: none !important; }
-  }
+  @media (prefers-reduced-motion: reduce){ *{ transition: none !important; } }
 </style>
 </head>
 <body>
@@ -249,23 +166,34 @@
   <div class="eyebrow">Fé em Perguntas</div>
   <h1>Quiz Católico</h1>
   <p class="subtitle">Quanto você conhece da doutrina, da Escritura e da Tradição?</p>
+  <p class="ai-disclaimer">Conteúdo gerado por IA — pode conter imprecisões.</p>
 
   <div class="card">
-    <!-- QUIZ VIEW -->
-    <div id="quiz-view">
+
+    <div id="setup-view">
+      <p class="setup-label">Escolha os temas</p>
+      <div class="theme-grid" id="theme-grid"></div>
+
+      <p class="setup-label">Quantas perguntas?</p>
+      <div class="count-row" id="count-row"></div>
+
+      <p class="setup-error" id="setup-error"></p>
+      <button class="start-btn" id="start-btn">Começar o quiz</button>
+    </div>
+
+    <div id="quiz-view" class="hidden">
       <div class="progress-row">
         <span id="progress-label">Pergunta 1 de 8</span>
         <span id="score-label">Acertos: 0</span>
       </div>
       <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
-
+      <span class="theme-tag" id="theme-tag"></span>
       <div class="question" id="question-text"></div>
       <div class="options" id="options-container"></div>
       <div class="feedback" id="feedback-text"></div>
       <button class="next-btn" id="next-btn">Próxima pergunta →</button>
     </div>
 
-    <!-- RESULTS VIEW -->
     <div id="result-view" class="hidden">
       <div class="result-score">
         <span class="num" id="final-score">0</span>
@@ -273,164 +201,198 @@
       </div>
       <p class="result-msg" id="result-msg"></p>
       <div class="review" id="review-container"></div>
-      <button class="restart-btn" id="restart-btn">Refazer o quiz</button>
+      <button class="restart-btn" id="restart-btn">Escolher outro quiz</button>
     </div>
   </div>
 </div>
 
 <script>
-const QUESTIONS = [
-  {
-    q: "Quantos sacramentos a Igreja Católica reconhece?",
-    options: ["Cinco", "Sete", "Nove", "Três"],
-    correct: 1,
-    explain: "São sete: Batismo, Confirmação, Eucaristia, Reconciliação, Unção dos Enfermos, Ordem e Matrimônio."
-  },
-  {
-    q: "Qual concílio definiu o cânon oficial dos livros da Bíblia para os católicos?",
-    options: ["Concílio de Trento", "Concílio de Niceia", "Concílio Vaticano I", "Concílio de Éfeso"],
-    correct: 0,
-    explain: "O Concílio de Trento (1546) confirmou definitivamente o cânon de 73 livros diante da Reforma Protestante."
-  },
-  {
-    q: "Quem foi o primeiro Papa, segundo a Tradição católica?",
-    options: ["São Paulo", "São João", "São Pedro", "Santo André"],
-    correct: 2,
-    explain: "São Pedro é considerado o primeiro Papa, a partir do texto de Mateus 16,18."
-  },
-  {
-    q: "O que significa a palavra 'Eucaristia'?",
-    options: ["Sacrifício", "Ação de graças", "Comunhão", "Oferenda"],
-    correct: 1,
-    explain: "Vem do grego 'eucharistia', que significa ação de graças."
-  },
-  {
-    q: "Qual é o dogma mariano celebrado em 8 de dezembro?",
-    options: ["Assunção de Maria", "Imaculada Conceição", "Maternidade Divina", "Visitação"],
-    correct: 1,
-    explain: "A Imaculada Conceição afirma que Maria foi concebida sem o pecado original."
-  },
-  {
-    q: "Quantos mistérios tem o Rosário, incluindo os Luminosos?",
-    options: ["12", "15", "20", "25"],
-    correct: 2,
-    explain: "São 20 mistérios: Gozosos, Luminosos, Dolorosos e Gloriosos (5 cada)."
-  },
-  {
-    q: "Qual santo é conhecido como 'Doutor Angélico'?",
-    options: ["Santo Agostinho", "São Tomás de Aquino", "São Boaventura", "São Jerônimo"],
-    correct: 1,
-    explain: "São Tomás de Aquino, autor da Suma Teológica, recebeu esse título por sua obra filosófico-teológica."
-  },
-  {
-    q: "O que é a 'Transubstanciação'?",
-    options: [
-      "A transformação espiritual do fiel após a comunhão",
-      "A mudança da substância do pão e do vinho no Corpo e Sangue de Cristo",
-      "A passagem da alma para o Purgatório",
-      "A conversão de um não-católico à fé"
-    ],
-    correct: 1,
-    explain: "É o termo teológico para a conversão real do pão e do vinho no Corpo e Sangue de Cristo na Missa."
-  },
-  {
-    q: "Quantos livros tem a Bíblia Católica, no total?",
-    options: ["66", "73", "80", "27"],
-    correct: 1,
-    explain: "São 46 livros no Antigo Testamento e 27 no Novo Testamento, totalizando 73."
-  },
-  {
-    q: "Qual é a oração que Jesus ensinou diretamente aos apóstolos?",
-    options: ["Ave Maria", "Salve Rainha", "Pai Nosso", "Credo"],
-    correct: 2,
-    explain: "O Pai Nosso está registrado nos Evangelhos de Mateus (6,9-13) e Lucas (11,2-4)."
-  },
-  {
-    q: "O que a Igreja celebra na Quarta-feira de Cinzas?",
-    options: ["O fim da Quaresma", "O início da Quaresma", "A Ressurreição", "A Ascensão"],
-    correct: 1,
-    explain: "A Quarta-feira de Cinzas marca o início dos 40 dias de Quaresma, tempo de penitência antes da Páscoa."
-  },
-  {
-    q: "Quem escreveu a maior parte das cartas do Novo Testamento?",
-    options: ["São Pedro", "São João", "São Paulo", "São Tiago"],
-    correct: 2,
-    explain: "São Paulo é autor de 13 das 21 cartas (epístolas) do Novo Testamento."
-  },
-  {
-    q: "O que significa 'Igreja apostólica', um dos quatro atributos da Igreja no Credo?",
-    options: [
-      "Que ela tem apóstolos vivos hoje",
-      "Que ela mantém a fé e a sucessão transmitidas pelos apóstolos",
-      "Que ela foi fundada só por São Pedro",
-      "Que ela envia missionários"
-    ],
-    correct: 1,
-    explain: "Apostólica significa que a Igreja preserva a doutrina e a sucessão vinda diretamente dos apóstolos de Cristo."
-  },
-  {
-    q: "Qual é o nome do documento principal que resume a doutrina católica atual?",
-    options: [
-      "Suma Teológica",
-      "Catecismo da Igreja Católica",
-      "Código de Direito Canônico",
-      "Confissões de Santo Agostinho"
-    ],
-    correct: 1,
-    explain: "O Catecismo da Igreja Católica, publicado em 1992, organiza toda a doutrina de forma sistemática."
-  },
-  {
-    q: "Qual arcanjo anunciou a Maria que ela seria a mãe de Jesus?",
-    options: ["Miguel", "Rafael", "Gabriel", "Uriel"],
-    correct: 2,
-    explain: "O Arcanjo Gabriel apareceu a Maria na Anunciação (Lucas 1,26-38)."
-  },
-  {
-    q: "O que é o Purgatório, segundo a doutrina católica?",
-    options: [
-      "Um segundo inferno, mais leve",
-      "Um estado de purificação para quem morre em graça mas ainda precisa se purificar",
-      "Um lugar onde as almas ficam para sempre",
-      "Um conceito que a Igreja já abandonou"
-    ],
-    correct: 1,
-    explain: "É um estado transitório de purificação antes de entrar plenamente na presença de Deus."
-  },
-  {
-    q: "Quantos dias durou o dilúvio de chuva na história de Noé, segundo o Gênesis?",
-    options: ["7 dias", "40 dias", "100 dias", "12 dias"],
-    correct: 1,
-    explain: "Gênesis 7,12 relata que choveu sobre a terra durante 40 dias e 40 noites."
-  },
-  {
-    q: "Qual é o nome do sacramento também chamado de 'Penitência' ou 'Confissão'?",
-    options: ["Crisma", "Reconciliação", "Unção dos Enfermos", "Ordem"],
-    correct: 1,
-    explain: "O sacramento da Reconciliação (ou Confissão) perdoa os pecados cometidos após o Batismo."
-  },
-  {
-    q: "Em que cidade nasceu Jesus Cristo, segundo os Evangelhos?",
-    options: ["Nazaré", "Jerusalém", "Belém", "Cafarnaum"],
-    correct: 2,
-    explain: "Jesus nasceu em Belém da Judeia, cumprindo a profecia de Miqueias 5,2."
-  },
-  {
-    q: "O que a Igreja entende por 'Comunhão dos Santos'?",
-    options: [
-      "Apenas os santos canonizados",
-      "A união espiritual entre os fiéis vivos, as almas do Purgatório e os santos no Céu",
-      "Um sacramento específico",
-      "Uma festa litúrgica anual"
-    ],
-    correct: 1,
-    explain: "É a união espiritual de todos os batizados — na terra, no Purgatório e no Céu — unidos em Cristo."
-  }
-];
+const BANK = {
+  "Sacramentos": [
+    { q: "Quantos sacramentos a Igreja Católica reconhece?", options: ["Cinco","Sete","Nove","Três"], correct: 1,
+      explain: "São sete: Batismo, Confirmação, Eucaristia, Reconciliação, Unção dos Enfermos, Ordem e Matrimônio." },
+    { q: "O que significa a palavra 'Eucaristia'?", options: ["Sacrifício","Ação de graças","Comunhão","Oferenda"], correct: 1,
+      explain: "Vem do grego 'eucharistia', que significa ação de graças." },
+    { q: "O que é a 'Transubstanciação'?", options: [
+        "A transformação espiritual do fiel após a comunhão",
+        "A mudança da substância do pão e do vinho no Corpo e Sangue de Cristo",
+        "A passagem da alma para o Purgatório",
+        "A conversão de um não-católico à fé" ], correct: 1,
+      explain: "É o termo teológico para a conversão real do pão e do vinho no Corpo e Sangue de Cristo na Missa." },
+    { q: "Qual é o nome do sacramento também chamado de 'Penitência' ou 'Confissão'?", options: ["Crisma","Reconciliação","Unção dos Enfermos","Ordem"], correct: 1,
+      explain: "O sacramento da Reconciliação (ou Confissão) perdoa os pecados cometidos após o Batismo." },
+    { q: "Qual sacramento só pode ser recebido uma vez e imprime 'caráter indelével' junto com o Batismo e a Ordem?", options: ["Unção dos Enfermos","Matrimônio","Confirmação (Crisma)","Reconciliação"], correct: 2,
+      explain: "Batismo, Confirmação e Ordem imprimem um caráter espiritual permanente na alma, por isso não se repetem." }
+  ],
+  "Bíblia": [
+    { q: "Qual concílio definiu o cânon oficial dos livros da Bíblia para os católicos?", options: ["Concílio de Trento","Concílio de Niceia","Concílio Vaticano I","Concílio de Éfeso"], correct: 0,
+      explain: "O Concílio de Trento (1546) confirmou definitivamente o cânon de 73 livros diante da Reforma Protestante." },
+    { q: "Quantos livros tem a Bíblia Católica, no total?", options: ["66","73","80","27"], correct: 1,
+      explain: "São 46 livros no Antigo Testamento e 27 no Novo Testamento, totalizando 73." },
+    { q: "Qual é a oração que Jesus ensinou diretamente aos apóstolos?", options: ["Ave Maria","Salve Rainha","Pai Nosso","Credo"], correct: 2,
+      explain: "O Pai Nosso está registrado nos Evangelhos de Mateus (6,9-13) e Lucas (11,2-4)." },
+    { q: "Quem escreveu a maior parte das cartas do Novo Testamento?", options: ["São Pedro","São João","São Paulo","São Tiago"], correct: 2,
+      explain: "São Paulo é autor de 13 das 21 cartas (epístolas) do Novo Testamento." },
+    { q: "Em que cidade nasceu Jesus Cristo, segundo os Evangelhos?", options: ["Nazaré","Jerusalém","Belém","Cafarnaum"], correct: 2,
+      explain: "Jesus nasceu em Belém da Judeia, cumprindo a profecia de Miqueias 5,2." },
+    { q: "Quantos dias durou a chuva do dilúvio na história de Noé, segundo o Gênesis?", options: ["7 dias","40 dias","100 dias","12 dias"], correct: 1,
+      explain: "Gênesis 7,12 relata que choveu sobre a terra durante 40 dias e 40 noites." }
+  ],
+  "Santos": [
+    { q: "Quem foi o primeiro Papa, segundo a Tradição católica?", options: ["São Paulo","São João","São Pedro","Santo André"], correct: 2,
+      explain: "São Pedro é considerado o primeiro Papa, a partir do texto de Mateus 16,18." },
+    { q: "Qual santo é conhecido como 'Doutor Angélico'?", options: ["Santo Agostinho","São Tomás de Aquino","São Boaventura","São Jerônimo"], correct: 1,
+      explain: "São Tomás de Aquino, autor da Suma Teológica, recebeu esse título por sua obra filosófico-teológica." },
+    { q: "Qual arcanjo anunciou a Maria que ela seria a mãe de Jesus?", options: ["Miguel","Rafael","Gabriel","Uriel"], correct: 2,
+      explain: "O Arcanjo Gabriel apareceu a Maria na Anunciação (Lucas 1,26-38)." },
+    { q: "Qual santo fundou a Ordem dos Frades Menores (franciscanos)?", options: ["São Domingos","São Francisco de Assis","Santo Inácio de Loyola","São Bento"], correct: 1,
+      explain: "São Francisco de Assis fundou a Ordem Franciscana no início do século XIII, com voto de pobreza radical." },
+    { q: "Quem fundou a Companhia de Jesus (jesuítas)?", options: ["Santo Inácio de Loyola","São Filipe Néri","São Francisco Xavier","São Carlos Borromeu"], correct: 0,
+      explain: "Santo Inácio de Loyola fundou a Companhia de Jesus em 1540, aprovada pelo Papa Paulo III." }
+  ],
+  "Papas e Concílios": [
+    { q: "Em que anos ocorreu o Concílio Vaticano II?", options: ["1869–1870","1962–1965","1545–1563","1917–1920"], correct: 1,
+      explain: "O Concílio Vaticano II foi realizado de 1962 a 1965, reunindo bispos de todo o mundo na Basílica de São Pedro." },
+    { q: "Qual Papa convocou o Concílio Vaticano II e qual concluiu os trabalhos?", options: [
+        "João XXIII convocou; Paulo VI concluiu",
+        "Pio XII convocou; João XXIII concluiu",
+        "Paulo VI convocou; João Paulo II concluiu",
+        "João XXIII convocou e também concluiu" ], correct: 0,
+      explain: "João XXIII convocou o Concílio em 1959 e abriu os trabalhos em 1962; após sua morte em 1963, Paulo VI conduziu o Concílio até seu encerramento em 1965." },
+    { q: "Quantos documentos foram produzidos ao final do Concílio Vaticano II?", options: ["8","16","24","5"], correct: 1,
+      explain: "Foram produzidos 16 documentos: 4 Constituições, 9 Decretos e 3 Declarações." },
+    { q: "Qual concílio foi convocado em resposta à Reforma Protestante, no século XVI?", options: ["Concílio de Trento","Concílio Vaticano I","Concílio de Niceia","Concílio de Latrão"], correct: 0,
+      explain: "O Concílio de Trento (1545–1563) foi a resposta da Igreja Católica à Reforma Protestante, reafirmando doutrinas e reformando disciplinas internas." },
+    { q: "Quem foi o Papa escolhido em 2013, o primeiro papa jesuíta e primeiro latino-americano da história?", options: ["Bento XVI","João Paulo II","Francisco","João Paulo I"], correct: 2,
+      explain: "O Papa Francisco (Jorge Mario Bergoglio) foi eleito em 2013, sendo o primeiro papa jesuíta e o primeiro latino-americano." }
+  ],
+  "Maria e Dogmas": [
+    { q: "Qual é o dogma mariano celebrado em 8 de dezembro?", options: ["Assunção de Maria","Imaculada Conceição","Maternidade Divina","Visitação"], correct: 1,
+      explain: "A Imaculada Conceição afirma que Maria foi concebida sem o pecado original." },
+    { q: "Quantos mistérios tem o Rosário, incluindo os Luminosos?", options: ["12","15","20","25"], correct: 2,
+      explain: "São 20 mistérios: Gozosos, Luminosos, Dolorosos e Gloriosos (5 cada)." },
+    { q: "O dogma da Assunção de Maria afirma que:", options: [
+        "Maria nunca morreu",
+        "Maria foi elevada de corpo e alma ao Céu ao fim de sua vida terrena",
+        "Maria nasceu sem pecado original",
+        "Maria apareceu em Lourdes" ], correct: 1,
+      explain: "Definido em 1950 pelo Papa Pio XII, o dogma afirma que Maria foi assunta ao Céu em corpo e alma." },
+    { q: "Qual título dogmático reconhece Maria como mãe de Jesus, que é Deus e homem verdadeiro?", options: ["Rainha do Céu","Theotókos (Mãe de Deus)","Imaculada","Medianeira"], correct: 1,
+      explain: "O título de Theotókos ('Mãe de Deus') foi definido no Concílio de Éfeso, em 431." }
+  ],
+  "Doutrina Geral": [
+    { q: "Qual é o nome do documento principal que resume a doutrina católica atual?", options: ["Suma Teológica","Catecismo da Igreja Católica","Código de Direito Canônico","Confissões de Santo Agostinho"], correct: 1,
+      explain: "O Catecismo da Igreja Católica, publicado em 1992, organiza toda a doutrina de forma sistemática." },
+    { q: "O que é o Purgatório, segundo a doutrina católica?", options: [
+        "Um segundo inferno, mais leve",
+        "Um estado de purificação para quem morre em graça mas ainda precisa se purificar",
+        "Um lugar onde as almas ficam para sempre",
+        "Um conceito que a Igreja já abandonou" ], correct: 1,
+      explain: "É um estado transitório de purificação antes de entrar plenamente na presença de Deus." },
+    { q: "O que significa 'Igreja apostólica', um dos quatro atributos da Igreja no Credo?", options: [
+        "Que ela tem apóstolos vivos hoje",
+        "Que ela mantém a fé e a sucessão transmitidas pelos apóstolos",
+        "Que ela foi fundada só por São Pedro",
+        "Que ela envia missionários" ], correct: 1,
+      explain: "Apostólica significa que a Igreja preserva a doutrina e a sucessão vinda diretamente dos apóstolos de Cristo." },
+    { q: "O que a Igreja entende por 'Comunhão dos Santos'?", options: [
+        "Apenas os santos canonizados",
+        "A união espiritual entre os fiéis vivos, as almas do Purgatório e os santos no Céu",
+        "Um sacramento específico",
+        "Uma festa litúrgica anual" ], correct: 1,
+      explain: "É a união espiritual de todos os batizados — na terra, no Purgatório e no Céu — unidos em Cristo." },
+    { q: "O que a Igreja celebra na Quarta-feira de Cinzas?", options: ["O fim da Quaresma","O início da Quaresma","A Ressurreição","A Ascensão"], correct: 1,
+      explain: "A Quarta-feira de Cinzas marca o início dos 40 dias de Quaresma, tempo de penitência antes da Páscoa." }
+  ]
+};
 
-let current = 0;
-let score = 0;
-let answered = false;
+const THEME_KEYS = Object.keys(BANK);
+const COUNT_OPTIONS = [5, 10, 15, 20];
+
+let selectedThemes = new Set(THEME_KEYS);
+let selectedCount = 10;
+let quizQuestions = [];
+let current = 0, score = 0, answered = false;
 const userAnswers = [];
+
+const themeGrid = document.getElementById('theme-grid');
+const countRow = document.getElementById('count-row');
+const startBtn = document.getElementById('start-btn');
+const setupError = document.getElementById('setup-error');
+
+function renderSetup(){
+  themeGrid.innerHTML = '';
+  THEME_KEYS.forEach(theme => {
+    const chip = document.createElement('div');
+    chip.className = 'theme-chip' + (selectedThemes.has(theme) ? ' active' : '');
+    chip.innerHTML = `<span class="box">${selectedThemes.has(theme) ? '✓' : ''}</span><span>${theme}</span><span class="count">${BANK[theme].length}</span>`;
+    chip.addEventListener('click', () => {
+      if(selectedThemes.has(theme)) selectedThemes.delete(theme);
+      else selectedThemes.add(theme);
+      renderSetup();
+    });
+    themeGrid.appendChild(chip);
+  });
+
+  countRow.innerHTML = '';
+  COUNT_OPTIONS.forEach(n => {
+    const btn = document.createElement('button');
+    btn.className = 'count-btn' + (selectedCount === n ? ' active' : '');
+    btn.textContent = n;
+    btn.addEventListener('click', () => { selectedCount = n; renderSetup(); });
+    countRow.appendChild(btn);
+  });
+
+  const available = availableCount();
+  if(selectedThemes.size === 0){
+    setupError.textContent = 'Escolha ao menos um tema.';
+  } else if(available < selectedCount){
+    setupError.textContent = `Só há ${available} pergunta(s) disponível(is) nesses temas — o quiz usará todas elas.`;
+  } else {
+    setupError.textContent = '';
+  }
+  startBtn.disabled = selectedThemes.size === 0;
+}
+
+function availableCount(){
+  let total = 0;
+  selectedThemes.forEach(t => total += BANK[t].length);
+  return total;
+}
+
+function shuffle(arr){
+  const a = [...arr];
+  for(let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+startBtn.addEventListener('click', () => {
+  if(selectedThemes.size === 0) return;
+  let pool = [];
+  selectedThemes.forEach(theme => {
+    BANK[theme].forEach(item => pool.push({ ...item, theme }));
+  });
+  pool = shuffle(pool);
+  const n = Math.min(selectedCount, pool.length);
+  quizQuestions = pool.slice(0, n).map(item => {
+    const letters = item.options.map((opt, idx) => ({ opt, isCorrect: idx === item.correct }));
+    const shuffled = shuffle(letters);
+    return {
+      q: item.q,
+      theme: item.theme,
+      explain: item.explain,
+      options: shuffled.map(s => s.opt),
+      correct: shuffled.findIndex(s => s.isCorrect)
+    };
+  });
+  current = 0; score = 0; userAnswers.length = 0;
+  document.getElementById('setup-view').classList.add('hidden');
+  document.getElementById('quiz-view').classList.remove('hidden');
+  renderQuestion();
+});
 
 const questionText = document.getElementById('question-text');
 const optionsContainer = document.getElementById('options-container');
@@ -439,16 +401,18 @@ const nextBtn = document.getElementById('next-btn');
 const progressLabel = document.getElementById('progress-label');
 const scoreLabel = document.getElementById('score-label');
 const progressFill = document.getElementById('progress-fill');
+const themeTag = document.getElementById('theme-tag');
 
 function renderQuestion(){
   answered = false;
   feedbackText.textContent = '';
   nextBtn.classList.remove('show');
-  const item = QUESTIONS[current];
+  const item = quizQuestions[current];
+  themeTag.textContent = item.theme;
   questionText.textContent = item.q;
-  progressLabel.textContent = `Pergunta ${current+1} de ${QUESTIONS.length}`;
+  progressLabel.textContent = `Pergunta ${current+1} de ${quizQuestions.length}`;
   scoreLabel.textContent = `Acertos: ${score}`;
-  progressFill.style.width = `${(current/QUESTIONS.length)*100}%`;
+  progressFill.style.width = `${(current/quizQuestions.length)*100}%`;
 
   optionsContainer.innerHTML = '';
   const letters = ['A','B','C','D'];
@@ -464,7 +428,7 @@ function renderQuestion(){
 function selectAnswer(idx){
   if(answered) return;
   answered = true;
-  const item = QUESTIONS[current];
+  const item = quizQuestions[current];
   const allOptions = optionsContainer.querySelectorAll('.option');
   allOptions.forEach(o => o.disabled = true);
 
@@ -483,21 +447,18 @@ function selectAnswer(idx){
 
 nextBtn.addEventListener('click', () => {
   current++;
-  if(current < QUESTIONS.length){
-    renderQuestion();
-  } else {
-    showResults();
-  }
+  if(current < quizQuestions.length) renderQuestion();
+  else showResults();
 });
 
 function showResults(){
   document.getElementById('quiz-view').classList.add('hidden');
   document.getElementById('result-view').classList.remove('hidden');
   document.getElementById('final-score').textContent = score;
-  document.getElementById('final-of').textContent = `/ ${QUESTIONS.length}`;
+  document.getElementById('final-of').textContent = `/ ${quizQuestions.length}`;
 
   let msg;
-  const pct = score / QUESTIONS.length;
+  const pct = score / quizQuestions.length;
   if(pct === 1) msg = "Conhecimento sólido como a Rocha de Pedro!";
   else if(pct >= 0.7) msg = "Muito bem! A fé busca compreensão — e você já entende bastante.";
   else if(pct >= 0.4) msg = "Bom começo. Vale aprofundar um pouco mais no catecismo.";
@@ -525,14 +486,12 @@ function showResults(){
 }
 
 document.getElementById('restart-btn').addEventListener('click', () => {
-  current = 0; score = 0; answered = false;
-  userAnswers.length = 0;
   document.getElementById('result-view').classList.add('hidden');
-  document.getElementById('quiz-view').classList.remove('hidden');
-  renderQuestion();
+  document.getElementById('setup-view').classList.remove('hidden');
+  renderSetup();
 });
 
-renderQuestion();
+renderSetup();
 </script>
 
 </body>
