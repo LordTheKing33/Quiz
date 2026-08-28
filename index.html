@@ -388,7 +388,7 @@ const BANK = {
 };
 
 const THEME_KEYS = Object.keys(BANK);
-const COUNT_OPTIONS = [5, 10, 15, 20, 30];
+const COUNT_OPTIONS = [5, 10, 15, 20, 30, 'all'];
 
 let selectedThemes = new Set(THEME_KEYS);
 let selectedCount = 10;
@@ -420,7 +420,7 @@ function renderSetup(){
   COUNT_OPTIONS.forEach(n => {
     const btn = document.createElement('button');
     btn.className = 'count-btn' + (selectedCount === n ? ' active' : '');
-    btn.textContent = n;
+    btn.textContent = n === 'all' ? 'Todas' : n;
     btn.addEventListener('click', () => { selectedCount = n; renderSetup(); });
     countRow.appendChild(btn);
   });
@@ -428,6 +428,8 @@ function renderSetup(){
   const available = availableCount();
   if(selectedThemes.size === 0){
     setupError.textContent = 'Escolha ao menos um tema.';
+  } else if(selectedCount === 'all'){
+    setupError.textContent = `O quiz usará todas as ${available} pergunta(s) dos temas selecionados.`;
   } else if(available < selectedCount){
     setupError.textContent = `Só há ${available} pergunta(s) disponível(is) nesses temas — o quiz usará todas elas.`;
   } else {
@@ -458,7 +460,7 @@ startBtn.addEventListener('click', () => {
     BANK[theme].forEach(item => pool.push({ ...item, theme }));
   });
   pool = shuffle(pool);
-  const n = Math.min(selectedCount, pool.length);
+  const n = selectedCount === 'all' ? pool.length : Math.min(selectedCount, pool.length);
   quizQuestions = pool.slice(0, n).map(item => {
     const letters = item.options.map((opt, idx) => ({ opt, isCorrect: idx === item.correct }));
     const shuffled = shuffle(letters);
