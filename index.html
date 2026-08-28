@@ -245,7 +245,19 @@ const BANK = {
     { q: "Qual é o nome do sacramento também chamado de 'Penitência' ou 'Confissão'?", options: ["Crisma","Reconciliação","Unção dos Enfermos","Ordem"], correct: 1,
       explain: "O sacramento da Reconciliação (ou Confissão) perdoa os pecados cometidos após o Batismo." },
     { q: "Qual sacramento só pode ser recebido uma vez e imprime 'caráter indelével' junto com o Batismo e a Ordem?", options: ["Unção dos Enfermos","Matrimônio","Confirmação (Crisma)","Reconciliação"], correct: 2,
-      explain: "Batismo, Confirmação e Ordem imprimem um caráter espiritual permanente na alma, por isso não se repetem." }
+      explain: "Batismo, Confirmação e Ordem imprimem um caráter espiritual permanente na alma, por isso não se repetem." },
+    { q: "Qual é a matéria (elemento físico) usada no sacramento do Batismo?", options: ["Óleo","Água","Vinho","Sal"], correct: 1,
+      explain: "A água é derramada sobre a cabeça (ou por imersão) junto com a fórmula trinitária, constituindo o Batismo." },
+    { q: "Como se chama o sacramento pelo qual homens são ordenados diáconos, padres ou bispos?", options: ["Crisma","Ordem","Matrimônio","Unção"], correct: 1,
+      explain: "O sacramento da Ordem confere os graus do ministério ordenado: diaconato, presbiterado e episcopado." },
+    { q: "Qual sacramento é administrado a pessoas gravemente doentes ou em risco de morte?", options: ["Reconciliação","Unção dos Enfermos","Crisma","Batismo"], correct: 1,
+      explain: "A Unção dos Enfermos oferece graça, conforto e, se for da vontade de Deus, cura, aos que estão gravemente doentes." },
+    { q: "O que caracteriza o Matrimônio católico segundo a doutrina da Igreja?", options: [
+        "Pode ser dissolvido por qualquer motivo grave",
+        "É uma aliança una e indissolúvel entre batizados",
+        "É apenas um contrato civil",
+        "É opcional para católicos praticantes" ], correct: 1,
+      explain: "A Igreja ensina que o Matrimônio sacramental é uma aliança permanente e exclusiva entre os cônjuges." }
   ],
   "Bíblia": [
     { q: "Qual concílio definiu o cânon oficial dos livros da Bíblia para os católicos?", options: ["Concílio de Trento","Concílio de Niceia","Concílio Vaticano I","Concílio de Éfeso"], correct: 0,
@@ -259,7 +271,15 @@ const BANK = {
     { q: "Em que cidade nasceu Jesus Cristo, segundo os Evangelhos?", options: ["Nazaré","Jerusalém","Belém","Cafarnaum"], correct: 2,
       explain: "Jesus nasceu em Belém da Judeia, cumprindo a profecia de Miqueias 5,2." },
     { q: "Quantos dias durou a chuva do dilúvio na história de Noé, segundo o Gênesis?", options: ["7 dias","40 dias","100 dias","12 dias"], correct: 1,
-      explain: "Gênesis 7,12 relata que choveu sobre a terra durante 40 dias e 40 noites." }
+      explain: "Gênesis 7,12 relata que choveu sobre a terra durante 40 dias e 40 noites." },
+    { q: "Quantos evangelhos fazem parte do Novo Testamento?", options: ["Três","Quatro","Cinco","Sete"], correct: 1,
+      explain: "São quatro Evangelhos canônicos: Mateus, Marcos, Lucas e João." },
+    { q: "Qual é o primeiro livro da Bíblia?", options: ["Êxodo","Gênesis","Levítico","Salmos"], correct: 1,
+      explain: "Gênesis é o primeiro livro do Antigo Testamento, narrando a criação e as origens do povo de Israel." },
+    { q: "Em qual monte Moisés recebeu os Dez Mandamentos, segundo o Êxodo?", options: ["Monte Sinai","Monte Tabor","Monte das Oliveiras","Monte Carmelo"], correct: 0,
+      explain: "Moisés recebeu as Tábuas da Lei no Monte Sinai, conforme relatado em Êxodo 19-20." },
+    { q: "Quem traiu Jesus por trinta moedas de prata, segundo os Evangelhos?", options: ["Pedro","Tomé","Judas Iscariotes","Barrabás"], correct: 2,
+      explain: "Judas Iscariotes entregou Jesus às autoridades por trinta moedas de prata (Mateus 26,14-16)." }
   ],
   "Santos": [
     { q: "Quem foi o primeiro Papa, segundo a Tradição católica?", options: ["São Paulo","São João","São Pedro","Santo André"], correct: 2,
@@ -271,7 +291,15 @@ const BANK = {
     { q: "Qual santo fundou a Ordem dos Frades Menores (franciscanos)?", options: ["São Domingos","São Francisco de Assis","Santo Inácio de Loyola","São Bento"], correct: 1,
       explain: "São Francisco de Assis fundou a Ordem Franciscana no início do século XIII, com voto de pobreza radical." },
     { q: "Quem fundou a Companhia de Jesus (jesuítas)?", options: ["Santo Inácio de Loyola","São Filipe Néri","São Francisco Xavier","São Carlos Borromeu"], correct: 0,
-      explain: "Santo Inácio de Loyola fundou a Companhia de Jesus em 1540, aprovada pelo Papa Paulo III." }
+      explain: "Santo Inácio de Loyola fundou a Companhia de Jesus em 1540, aprovada pelo Papa Paulo III." },
+    { q: "Qual santa brasileira foi canonizada em 2002, primeira santa nascida no Brasil?", options: ["Santa Dulce dos Pobres","Santa Paulina","Santa Teresinha","Santa Rita de Cássia"], correct: 1,
+      explain: "Santa Paulina (Amábile Lucia Visintainer) foi canonizada em 2002 pelo Papa João Paulo II, sendo a primeira santa nascida no Brasil." },
+    { q: "Qual santo é padroeiro dos animais e da ecologia, com festa celebrada em 4 de outubro?", options: ["São Jorge","São Francisco de Assis","Santo Antônio","São Bento"], correct: 1,
+      explain: "São Francisco de Assis é o padroeiro da ecologia, conhecido por seu amor à criação, expresso no 'Cântico das Criaturas'." },
+    { q: "Quem é considerado o 'Doutor de Israel' e traduziu a Bíblia para o latim (a Vulgata)?", options: ["Santo Agostinho","São Jerônimo","São Beda","São Basílio"], correct: 1,
+      explain: "São Jerônimo traduziu as Escrituras para o latim no século IV, produzindo a Vulgata, texto oficial da Igreja por séculos." },
+    { q: "Qual santa é conhecida por sua 'pequena via' de simplicidade e confiança em Deus?", options: ["Santa Teresa d'Ávila","Santa Teresinha do Menino Jesus","Santa Catarina de Sena","Santa Clara de Assis"], correct: 1,
+      explain: "Santa Teresinha de Lisieux (do Menino Jesus) ficou famosa por sua espiritualidade da 'pequena via', hoje Doutora da Igreja." }
   ],
   "Papas e Concílios": [
     { q: "Em que anos ocorreu o Concílio Vaticano II?", options: ["1869–1870","1962–1965","1545–1563","1917–1920"], correct: 1,
@@ -287,7 +315,15 @@ const BANK = {
     { q: "Qual concílio foi convocado em resposta à Reforma Protestante, no século XVI?", options: ["Concílio de Trento","Concílio Vaticano I","Concílio de Niceia","Concílio de Latrão"], correct: 0,
       explain: "O Concílio de Trento (1545–1563) foi a resposta da Igreja Católica à Reforma Protestante, reafirmando doutrinas e reformando disciplinas internas." },
     { q: "Quem foi o Papa escolhido em 2013, o primeiro papa jesuíta e primeiro latino-americano da história?", options: ["Bento XVI","João Paulo II","Francisco","João Paulo I"], correct: 2,
-      explain: "O Papa Francisco (Jorge Mario Bergoglio) foi eleito em 2013, sendo o primeiro papa jesuíta e o primeiro latino-americano." }
+      explain: "O Papa Francisco (Jorge Mario Bergoglio) foi eleito em 2013, sendo o primeiro papa jesuíta e o primeiro latino-americano." },
+    { q: "Qual Papa renunciou ao papado em 2013, algo raro na história da Igreja?", options: ["João Paulo II","Bento XVI","Paulo VI","João XXIII"], correct: 1,
+      explain: "Bento XVI renunciou em fevereiro de 2013, citando falta de forças físicas e mentais para o ministério." },
+    { q: "Quantos anos durou o pontificado de São João Paulo II, um dos mais longos da história?", options: ["10 anos","19 anos","27 anos","35 anos"], correct: 2,
+      explain: "João Paulo II foi Papa de 1978 a 2005, cerca de 27 anos, um dos pontificados mais longos da história." },
+    { q: "Como se chama a reunião de cardeais responsável por eleger um novo Papa?", options: ["Sínodo","Conclave","Consistório","Concílio"], correct: 1,
+      explain: "O Conclave é a reunião fechada dos cardeais eleitores reunidos na Capela Sistina para eleger o novo Papa." },
+    { q: "Qual é o nome oficial que o Papa recebe como Bispo de Roma e sucessor de São Pedro?", options: ["Sumo Pontífice","Patriarca","Metropolita","Núncio"], correct: 0,
+      explain: "'Sumo Pontífice' é um dos títulos oficiais do Papa, junto com Bispo de Roma e Vigário de Cristo." }
   ],
   "Maria e Dogmas": [
     { q: "Qual é o dogma mariano celebrado em 8 de dezembro?", options: ["Assunção de Maria","Imaculada Conceição","Maternidade Divina","Visitação"], correct: 1,
@@ -301,7 +337,13 @@ const BANK = {
         "Maria apareceu em Lourdes" ], correct: 1,
       explain: "Definido em 1950 pelo Papa Pio XII, o dogma afirma que Maria foi assunta ao Céu em corpo e alma." },
     { q: "Qual título dogmático reconhece Maria como mãe de Jesus, que é Deus e homem verdadeiro?", options: ["Rainha do Céu","Theotókos (Mãe de Deus)","Imaculada","Medianeira"], correct: 1,
-      explain: "O título de Theotókos ('Mãe de Deus') foi definido no Concílio de Éfeso, em 431." }
+      explain: "O título de Theotókos ('Mãe de Deus') foi definido no Concílio de Éfeso, em 431." },
+    { q: "Em qual cidade portuguesa Nossa Senhora apareceu a três pastorinhos em 1917?", options: ["Lisboa","Fátima","Braga","Coimbra"], correct: 1,
+      explain: "As aparições de Fátima ocorreram em 1917 a Lúcia, Francisco e Jacinta, tornando-se um dos santuários marianos mais visitados do mundo." },
+    { q: "Qual é o mês tradicionalmente dedicado a Nossa Senhora no calendário litúrgico católico?", options: ["Março","Maio","Agosto","Outubro"], correct: 1,
+      explain: "Maio é tradicionalmente consagrado a Maria, com a prática popular do 'Mês de Maria'." },
+    { q: "Como se chama a oração mariana que começa com 'Deus vos salve, Rainha'?", options: ["Angelus","Salve Rainha","Magnificat","Memorare"], correct: 1,
+      explain: "A Salve Rainha é uma das orações marianas mais tradicionais, rezada ao final do Rosário." }
   ],
   "Doutrina Geral": [
     { q: "Qual é o nome do documento principal que resume a doutrina católica atual?", options: ["Suma Teológica","Catecismo da Igreja Católica","Código de Direito Canônico","Confissões de Santo Agostinho"], correct: 1,
@@ -325,17 +367,34 @@ const BANK = {
         "Uma festa litúrgica anual" ], correct: 1,
       explain: "É a união espiritual de todos os batizados — na terra, no Purgatório e no Céu — unidos em Cristo." },
     { q: "O que a Igreja celebra na Quarta-feira de Cinzas?", options: ["O fim da Quaresma","O início da Quaresma","A Ressurreição","A Ascensão"], correct: 1,
-      explain: "A Quarta-feira de Cinzas marca o início dos 40 dias de Quaresma, tempo de penitência antes da Páscoa." }
+      explain: "A Quarta-feira de Cinzas marca o início dos 40 dias de Quaresma, tempo de penitência antes da Páscoa." },
+    { q: "Quais são as três virtudes teologais na doutrina católica?", options: [
+        "Prudência, Justiça e Fortaleza",
+        "Fé, Esperança e Caridade",
+        "Humildade, Paciência e Castidade",
+        "Sabedoria, Ciência e Piedade" ], correct: 1,
+      explain: "Fé, Esperança e Caridade são as virtudes teologais, que têm Deus como origem e objeto direto." },
+    { q: "O que significa a palavra 'Advento', período que antecede o Natal?", options: ["Espera", "Vinda/Chegada", "Nascimento", "Anúncio"], correct: 1,
+      explain: "Advento vem do latim 'adventus', que significa vinda ou chegada — referindo-se à vinda de Cristo." },
+    { q: "Quantos mandamentos compõem o Decálogo entregue a Moisés?", options: ["Sete","Dez","Doze","Cinco"], correct: 1,
+      explain: "São Dez Mandamentos, base da lei moral revelada a Moisés no Monte Sinai." },
+    { q: "O que é a 'Graça Santificante' na doutrina católica?", options: [
+        "Um sacramento específico",
+        "O dom permanente que habilita a alma a viver com Deus e por Deus",
+        "Uma oração litúrgica",
+        "Um título dado a santos" ], correct: 1,
+      explain: "A Graça Santificante é o dom sobrenatural e permanente que nos torna partícipes da vida divina." }
   ]
 };
 
 const THEME_KEYS = Object.keys(BANK);
-const COUNT_OPTIONS = [5, 10, 15, 20];
+const COUNT_OPTIONS = [5, 10, 15, 20, 30];
 
 let selectedThemes = new Set(THEME_KEYS);
 let selectedCount = 10;
 let quizQuestions = [];
 let current = 0, score = 0, answered = false;
+let autoAdvanceTimer = null;
 const userAnswers = [];
 
 const themeGrid = document.getElementById('theme-grid');
@@ -466,9 +525,17 @@ function selectAnswer(idx){
 
   nextBtn.classList.add('show');
   scoreLabel.textContent = `Acertos: ${score}`;
+
+  clearTimeout(autoAdvanceTimer);
+  autoAdvanceTimer = setTimeout(() => {
+    current++;
+    if(current < quizQuestions.length) renderQuestion();
+    else showResults();
+  }, 2600);
 }
 
 nextBtn.addEventListener('click', () => {
+  clearTimeout(autoAdvanceTimer);
   current++;
   if(current < quizQuestions.length) renderQuestion();
   else showResults();
@@ -509,6 +576,7 @@ function showResults(){
 }
 
 document.getElementById('restart-btn').addEventListener('click', () => {
+  clearTimeout(autoAdvanceTimer);
   document.getElementById('result-view').classList.add('hidden');
   document.getElementById('setup-view').classList.remove('hidden');
   renderSetup();
