@@ -4,166 +4,107 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quiz Católico</title>
+<meta name="description" content="Teste seus conhecimentos sobre doutrina, Bíblia, santos, sacramentos, papas e concílios com o Quiz Católico — perguntas por tema, quiz kids e pergunta do dia.">
+<meta property="og:title" content="Quiz Católico — Fé em Perguntas">
+<meta property="og:description" content="Quanto você conhece da doutrina, da Escritura e da Tradição? Escolha os temas e teste seus conhecimentos.">
+<meta property="og:type" content="website">
 <style>
   :root{
-    --ink: #10121c;
-    --ink-2: #181b2b;
-    --gold: #c9a24a;
-    --gold-light: #e6cd8a;
-    --parchment: #f4ecd8;
-    --red: #7a1f2b;
-    --green: #2f6b4f;
-    --line: rgba(230,205,138,0.18);
+    --ink: #10121c; --ink-2: #181b2b; --gold: #c9a24a; --gold-light: #e6cd8a;
+    --parchment: #f4ecd8; --red: #7a1f2b; --green: #2f6b4f; --line: rgba(230,205,138,0.18);
   }
   *{box-sizing:border-box;}
   body{
-    margin:0;
-    background: radial-gradient(ellipse at top, #1b1e30 0%, var(--ink) 60%);
-    font-family: 'Iowan Old Style','Palatino Linotype',Georgia,serif;
-    color: var(--parchment);
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding: 32px 16px;
+    margin:0; background: radial-gradient(ellipse at top, #1b1e30 0%, var(--ink) 60%);
+    font-family: 'Iowan Old Style','Palatino Linotype',Georgia,serif; color: var(--parchment);
+    min-height:100vh; display:flex; align-items:center; justify-content:center; padding: 32px 16px;
   }
   .app{ width:100%; max-width: 820px; }
-  .eyebrow{
-    text-align:center; letter-spacing: 0.28em; text-transform: uppercase;
-    font-size: 11px; color: var(--gold-light); margin-bottom: 6px;
-  }
-  h1{
-    text-align:center; font-size: 30px; font-weight: 400; margin: 0 0 4px;
-    color: var(--gold-light); letter-spacing: 0.02em;
-  }
-  .subtitle{
-    text-align:center; color: rgba(244,236,216,0.55); font-size: 14px;
-    margin-bottom: 28px; font-style: italic;
-  }
-  .ai-disclaimer{
-    text-align:center; font-size: 11px; color: rgba(244,236,216,0.35);
-    margin: -18px 0 22px; letter-spacing: 0.02em;
-  }
-  .ornament{
-    display:flex; align-items:center; justify-content:center; gap: 14px;
-    margin: 0 auto 18px; opacity: 0.55;
-  }
+  .eyebrow{ text-align:center; letter-spacing: 0.28em; text-transform: uppercase; font-size: 11px; color: var(--gold-light); margin-bottom: 6px; }
+  h1{ text-align:center; font-size: 30px; font-weight: 400; margin: 0 0 4px; color: var(--gold-light); letter-spacing: 0.02em; }
+  .subtitle{ text-align:center; color: rgba(244,236,216,0.55); font-size: 14px; margin-bottom: 28px; font-style: italic; }
+  .ai-disclaimer{ text-align:center; font-size: 11px; color: rgba(244,236,216,0.35); margin: -18px 0 22px; letter-spacing: 0.02em; }
+  .ornament{ display:flex; align-items:center; justify-content:center; gap: 14px; margin: 0 auto 18px; opacity: 0.55; }
   .ornament svg{ width:16px; height:16px; }
   .ornament .rule{ height:1px; width: 60px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
   .ornament.bottom{ margin: 30px auto 0; }
-  .card{
-    background: linear-gradient(180deg, var(--ink-2), var(--ink));
-    border: 1px solid var(--line); border-radius: 4px; padding: 44px 56px;
-    position: relative; box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
-  }
-  .card::before{
-    content:""; position:absolute; top:0; left:0; right:0; height:3px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  }
+  .card{ background: linear-gradient(180deg, var(--ink-2), var(--ink)); border: 1px solid var(--line); border-radius: 4px; padding: 44px 56px; position: relative; box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6); }
+  .card::before{ content:""; position:absolute; top:0; left:0; right:0; height:3px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+  @media (max-width: 600px){ .card{ padding: 32px 22px; } }
 
-  .setup-label{
-    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--gold-light); margin: 0 0 12px;
+  /* HUB */
+  .hub-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 560px){ .hub-grid{ grid-template-columns: 1fr; } }
+  .hub-card{
+    border: 1px solid var(--line); border-radius: 4px; padding: 22px 20px; cursor:pointer;
+    background: rgba(244,236,216,0.02); transition: all 0.2s ease; text-align:left;
   }
-  .theme-grid{
-    display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 26px;
-  }
+  .hub-card:hover{ border-color: var(--gold); background: rgba(201,162,74,0.06); }
+  .hub-card .hub-icon{ font-size: 22px; margin-bottom: 10px; display:block; }
+  .hub-card h3{ margin: 0 0 6px; font-size: 17px; color: var(--gold-light); font-weight: 400; }
+  .hub-card p{ margin:0; font-size: 12.5px; color: rgba(244,236,216,0.55); line-height:1.5; }
+  .back-link{ display:inline-block; margin-bottom: 18px; font-size: 12px; letter-spacing:0.05em; color: var(--gold-light); cursor:pointer; text-decoration:none; opacity:0.75; }
+  .back-link:hover{ opacity:1; }
+
+  .setup-label{ font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light); margin: 0 0 12px; }
+  .theme-grid{ display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 26px; }
   @media (max-width: 700px){ .theme-grid{ grid-template-columns: 1fr 1fr; } }
   @media (max-width: 480px){ .theme-grid{ grid-template-columns: 1fr; } }
-  .theme-chip{
-    display:flex; align-items:center; gap:10px;
-    padding: 12px 14px; border: 1px solid var(--line); border-radius: 3px;
-    background: rgba(244,236,216,0.03); cursor:pointer; font-size: 14px;
-    transition: all 0.2s ease; color: var(--parchment);
-  }
+  .theme-chip{ display:flex; align-items:center; gap:10px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 3px; background: rgba(244,236,216,0.03); cursor:pointer; font-size: 14px; transition: all 0.2s ease; color: var(--parchment); }
   .theme-chip:hover{ border-color: var(--gold); }
   .theme-chip.active{ border-color: var(--gold); background: rgba(201,162,74,0.1); }
-  .theme-chip .box{
-    width:16px; height:16px; border:1px solid var(--gold); border-radius:2px;
-    flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:11px;
-  }
+  .theme-chip .box{ width:16px; height:16px; border:1px solid var(--gold); border-radius:2px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:11px; }
   .theme-chip.active .box{ background: var(--gold); color: var(--ink); }
   .theme-chip .count{ margin-left:auto; font-size:11px; color: rgba(244,236,216,0.45); }
 
   .count-row{ display:flex; gap:10px; margin-bottom: 30px; flex-wrap: wrap; }
-  .count-btn{
-    flex:1; min-width: 64px; padding: 12px 8px; border:1px solid var(--line);
-    background: rgba(244,236,216,0.03); color: var(--parchment); border-radius:3px;
-    cursor:pointer; font-family:inherit; font-size:14px; transition: all 0.2s ease;
-  }
+  .count-btn{ flex:1; min-width: 64px; padding: 12px 8px; border:1px solid var(--line); background: rgba(244,236,216,0.03); color: var(--parchment); border-radius:3px; cursor:pointer; font-family:inherit; font-size:14px; transition: all 0.2s ease; }
   .count-btn:hover{ border-color: var(--gold); }
   .count-btn.active{ border-color: var(--gold); background: var(--gold); color: var(--ink); font-weight:600; }
 
-  .start-btn{
-    width:100%; padding: 15px; background: var(--gold); border:none; color: var(--ink);
-    font-family: inherit; letter-spacing: 0.1em; text-transform: uppercase; font-size: 13px;
-    border-radius: 3px; cursor:pointer; font-weight:600; transition: opacity 0.2s ease;
-  }
+  .start-btn{ width:100%; padding: 15px; background: var(--gold); border:none; color: var(--ink); font-family: inherit; letter-spacing: 0.1em; text-transform: uppercase; font-size: 13px; border-radius: 3px; cursor:pointer; font-weight:600; transition: opacity 0.2s ease; }
   .start-btn:disabled{ opacity:0.35; cursor: not-allowed; }
   .setup-error{ text-align:center; font-size:12.5px; color: var(--gold-light); margin: -14px 0 18px; min-height:16px; }
 
-  .progress-row{
-    display:flex; justify-content:space-between; align-items:center; margin-bottom: 22px;
-    font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(244,236,216,0.5);
-  }
-  .progress-track{
-    height: 3px; background: rgba(230,205,138,0.12); border-radius: 2px; overflow:hidden; margin-bottom: 26px;
-  }
+  .progress-row{ display:flex; justify-content:space-between; align-items:center; margin-bottom: 22px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(244,236,216,0.5); }
+  .progress-track{ height: 3px; background: rgba(230,205,138,0.12); border-radius: 2px; overflow:hidden; margin-bottom: 26px; }
   .progress-fill{ height:100%; background: var(--gold); transition: width 0.4s ease; }
-  .theme-tag{
-    display:inline-block; font-size: 10.5px; letter-spacing:0.08em; text-transform:uppercase;
-    color: var(--gold-light); border: 1px solid var(--line); padding: 3px 9px; border-radius: 20px;
-    margin-bottom: 14px;
-  }
+  .theme-tag{ display:inline-block; font-size: 10.5px; letter-spacing:0.08em; text-transform:uppercase; color: var(--gold-light); border: 1px solid var(--line); padding: 3px 9px; border-radius: 20px; margin-bottom: 14px; }
   .question{ font-size: 21px; line-height: 1.5; margin-bottom: 24px; color: var(--parchment); }
   .options{ display:flex; flex-direction:column; gap: 11px; }
-  .option{
-    text-align:left; padding: 14px 18px; background: rgba(244,236,216,0.03);
-    border: 1px solid var(--line); border-radius: 3px; color: var(--parchment);
-    font-family: inherit; font-size: 15.5px; cursor:pointer; transition: all 0.2s ease;
-    display:flex; align-items:center; gap: 12px;
-  }
+  .option{ text-align:left; padding: 14px 18px; background: rgba(244,236,216,0.03); border: 1px solid var(--line); border-radius: 3px; color: var(--parchment); font-family: inherit; font-size: 15.5px; cursor:pointer; transition: all 0.2s ease; display:flex; align-items:center; gap: 12px; }
   .option:hover:not(:disabled){ border-color: var(--gold); background: rgba(201,162,74,0.08); }
-  .option .letter{
-    width: 22px; height:22px; border:1px solid var(--gold); border-radius:50%;
-    display:flex;align-items:center;justify-content:center; font-size: 11px; color: var(--gold-light); flex-shrink:0;
-  }
+  .option .letter{ width: 22px; height:22px; border:1px solid var(--gold); border-radius:50%; display:flex;align-items:center;justify-content:center; font-size: 11px; color: var(--gold-light); flex-shrink:0; }
   .option.correct{ border-color: var(--green); background: rgba(47,107,79,0.18); }
   .option.correct .letter{ border-color: var(--green); background: var(--green); color: #fff; }
   .option.wrong{ border-color: var(--red); background: rgba(122,31,43,0.18); }
   .option.wrong .letter{ border-color: var(--red); background: var(--red); color: #fff; }
   .option:disabled{ cursor: default; }
-  .feedback{
-    margin-top:18px; font-size: 13.5px; line-height:1.6; color: rgba(244,236,216,0.65);
-    font-style: italic; border-left: 2px solid var(--gold); padding-left: 12px; min-height: 20px;
-  }
-  .next-btn{
-    margin-top: 26px; width:100%; padding: 13px; background: transparent; border: 1px solid var(--gold);
-    color: var(--gold-light); font-family: inherit; letter-spacing: 0.12em; text-transform: uppercase;
-    font-size: 12px; border-radius: 3px; cursor:pointer; opacity:0; pointer-events:none; transition: all 0.25s ease;
-  }
+  .feedback{ margin-top:18px; font-size: 13.5px; line-height:1.6; color: rgba(244,236,216,0.65); font-style: italic; border-left: 2px solid var(--gold); padding-left: 12px; min-height: 20px; }
+  .next-btn{ margin-top: 26px; width:100%; padding: 13px; background: transparent; border: 1px solid var(--gold); color: var(--gold-light); font-family: inherit; letter-spacing: 0.12em; text-transform: uppercase; font-size: 12px; border-radius: 3px; cursor:pointer; opacity:0; pointer-events:none; transition: all 0.25s ease; }
   .next-btn.show{ opacity:1; pointer-events:auto; }
   .next-btn:hover{ background: var(--gold); color: var(--ink); }
 
   .result-score{ text-align:center; margin-bottom: 8px; }
   .result-score .num{ font-size: 54px; color: var(--gold-light); font-weight:400; }
   .result-score .of{ font-size: 16px; color: rgba(244,236,216,0.5); }
-  .result-msg{ text-align:center; font-style: italic; color: rgba(244,236,216,0.6); margin-bottom: 30px; font-size: 14px; }
+  .result-msg{ text-align:center; font-style: italic; color: rgba(244,236,216,0.6); margin-bottom: 24px; font-size: 14px; }
   .review{ display:flex; flex-direction:column; gap: 14px; margin-bottom: 26px; }
-  .review-item{
-    border: 1px solid var(--line); border-left: 3px solid var(--gold); padding: 14px 16px;
-    border-radius: 3px; background: rgba(244,236,216,0.02);
-  }
+  .review-item{ border: 1px solid var(--line); border-left: 3px solid var(--gold); padding: 14px 16px; border-radius: 3px; background: rgba(244,236,216,0.02); }
   .review-item.miss{ border-left-color: var(--red); }
   .review-q{ font-size: 14px; margin-bottom: 6px; color: var(--parchment); }
   .review-a{ font-size: 13px; color: rgba(244,236,216,0.55); }
   .review-a .tag{ color: var(--green); font-style: normal; }
   .review-item.miss .review-a .your{ color: var(--red); }
-  .restart-btn{
-    width:100%; padding: 13px; background: var(--gold); border:none; color: var(--ink);
-    font-family: inherit; letter-spacing: 0.1em; text-transform: uppercase; font-size: 12px;
-    border-radius: 3px; cursor:pointer; font-weight:600;
-  }
+  .restart-btn{ width:100%; padding: 13px; background: var(--gold); border:none; color: var(--ink); font-family: inherit; letter-spacing: 0.1em; text-transform: uppercase; font-size: 12px; border-radius: 3px; cursor:pointer; font-weight:600; margin-bottom: 10px; }
+  .secondary-btn{ width:100%; padding: 13px; background: transparent; border: 1px solid var(--line); color: var(--parchment); font-family: inherit; letter-spacing: 0.05em; font-size: 12.5px; border-radius: 3px; cursor:pointer; }
+  .secondary-btn:hover{ border-color: var(--gold); }
+
+  .daily-date{ text-align:center; font-size: 12px; letter-spacing:0.1em; text-transform:uppercase; color: var(--gold-light); margin-bottom: 4px; }
+  .daily-saint{ text-align:center; font-size: 12.5px; color: rgba(244,236,216,0.5); margin-bottom: 24px; font-style: italic; }
+
+  .vestibular-notice{ font-size: 13.5px; line-height:1.7; color: rgba(244,236,216,0.65); border-left: 2px solid var(--gold); padding-left: 14px; margin-bottom: 10px; }
+
   .hidden{ display:none; }
   @media (prefers-reduced-motion: reduce){ *{ transition: none !important; } }
 </style>
@@ -173,9 +114,7 @@
 <div class="app">
   <div class="ornament">
     <span class="rule"></span>
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 2V22M6 8H18" stroke="#c9a24a" stroke-width="1.4" stroke-linecap="round"/>
-    </svg>
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2V22M6 8H18" stroke="#c9a24a" stroke-width="1.4" stroke-linecap="round"/></svg>
     <span class="rule"></span>
   </div>
   <div class="eyebrow">Fé em Perguntas</div>
@@ -185,17 +124,49 @@
 
   <div class="card">
 
-    <div id="setup-view">
+    <!-- HUB -->
+    <div id="hub-view">
+      <div class="hub-grid">
+        <div class="hub-card" data-target="setup-view">
+          <span class="hub-icon">✦</span>
+          <h3>Quiz Geral</h3>
+          <p>Escolha temas e quantidade de perguntas sobre doutrina, Bíblia, santos e mais.</p>
+        </div>
+        <div class="hub-card" data-target="kids-intro-view">
+          <span class="hub-icon">☺</span>
+          <h3>Quiz Kids</h3>
+          <p>Perguntas mais simples, pensadas para crianças e uso em catequese.</p>
+        </div>
+        <div class="hub-card" data-target="daily-view">
+          <span class="hub-icon">☀</span>
+          <h3>Pergunta do Dia</h3>
+          <p>Uma pergunta nova a cada dia, ligada ao calendário da Igreja.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SETUP (Quiz Geral) -->
+    <div id="setup-view" class="hidden">
+      <span class="back-link" data-back>← Voltar ao menu</span>
       <p class="setup-label">Escolha os temas</p>
       <div class="theme-grid" id="theme-grid"></div>
-
       <p class="setup-label">Quantas perguntas?</p>
       <div class="count-row" id="count-row"></div>
-
       <p class="setup-error" id="setup-error"></p>
       <button class="start-btn" id="start-btn">Começar o quiz</button>
     </div>
 
+    <!-- KIDS INTRO -->
+    <div id="kids-intro-view" class="hidden">
+      <span class="back-link" data-back>← Voltar ao menu</span>
+      <p class="setup-label">Quiz Kids</p>
+      <p style="font-size:14px; color:rgba(244,236,216,0.65); margin-bottom:22px; line-height:1.6;">
+        Perguntas mais simples sobre a fé, pensadas para crianças e para uso em catequese.
+      </p>
+      <button class="start-btn" id="kids-start-btn">Começar</button>
+    </div>
+
+    <!-- QUIZ VIEW (compartilhado entre Geral e Kids) -->
     <div id="quiz-view" class="hidden">
       <div class="progress-row">
         <span id="progress-label">Pergunta 1 de 8</span>
@@ -209,6 +180,7 @@
       <button class="next-btn" id="next-btn">Próxima pergunta →</button>
     </div>
 
+    <!-- RESULT VIEW -->
     <div id="result-view" class="hidden">
       <div class="result-score">
         <span class="num" id="final-score">0</span>
@@ -216,177 +188,142 @@
       </div>
       <p class="result-msg" id="result-msg"></p>
       <div class="review" id="review-container"></div>
+
       <button class="restart-btn" id="restart-btn">Escolher outro quiz</button>
+      <button class="secondary-btn" data-back>Voltar ao menu</button>
     </div>
+
+    <!-- DAILY VIEW -->
+    <div id="daily-view" class="hidden">
+      <span class="back-link" data-back>← Voltar ao menu</span>
+      <p class="daily-date" id="daily-date"></p>
+      <p class="daily-saint" id="daily-saint"></p>
+      <div class="question" id="daily-question-text"></div>
+      <div class="options" id="daily-options-container"></div>
+      <div class="feedback" id="daily-feedback-text"></div>
+    </div>
+
   </div>
 
   <div class="ornament bottom">
     <span class="rule"></span>
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="12" cy="12" r="9" stroke="#c9a24a" stroke-width="1.4"/>
-    </svg>
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="#c9a24a" stroke-width="1.4"/></svg>
     <span class="rule"></span>
   </div>
 </div>
 
 <script>
+// ============ NAVEGAÇÃO DO HUB ============
+const VIEWS = ['hub-view','setup-view','kids-intro-view','quiz-view','result-view','daily-view'];
+function showView(id){
+  VIEWS.forEach(v => document.getElementById(v).classList.toggle('hidden', v !== id));
+}
+document.querySelectorAll('.hub-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const target = card.dataset.target;
+    showView(target);
+    if(target === 'daily-view') renderDaily();
+  });
+});
+document.querySelectorAll('[data-back]').forEach(el => {
+  el.addEventListener('click', () => { clearTimeout(autoAdvanceTimer); showView('hub-view'); });
+});
+
+// ============ BANCO PRINCIPAL (Quiz Geral) ============
 const BANK = {
   "Sacramentos": [
-    { q: "Quantos sacramentos a Igreja Católica reconhece?", options: ["Cinco","Sete","Nove","Três"], correct: 1,
-      explain: "São sete: Batismo, Confirmação, Eucaristia, Reconciliação, Unção dos Enfermos, Ordem e Matrimônio." },
-    { q: "O que significa a palavra 'Eucaristia'?", options: ["Sacrifício","Ação de graças","Comunhão","Oferenda"], correct: 1,
-      explain: "Vem do grego 'eucharistia', que significa ação de graças." },
-    { q: "O que é a 'Transubstanciação'?", options: [
-        "A transformação espiritual do fiel após a comunhão",
-        "A mudança da substância do pão e do vinho no Corpo e Sangue de Cristo",
-        "A passagem da alma para o Purgatório",
-        "A conversão de um não-católico à fé" ], correct: 1,
-      explain: "É o termo teológico para a conversão real do pão e do vinho no Corpo e Sangue de Cristo na Missa." },
-    { q: "Qual é o nome do sacramento também chamado de 'Penitência' ou 'Confissão'?", options: ["Crisma","Reconciliação","Unção dos Enfermos","Ordem"], correct: 1,
-      explain: "O sacramento da Reconciliação (ou Confissão) perdoa os pecados cometidos após o Batismo." },
-    { q: "Qual sacramento só pode ser recebido uma vez e imprime 'caráter indelével' junto com o Batismo e a Ordem?", options: ["Unção dos Enfermos","Matrimônio","Confirmação (Crisma)","Reconciliação"], correct: 2,
-      explain: "Batismo, Confirmação e Ordem imprimem um caráter espiritual permanente na alma, por isso não se repetem." },
-    { q: "Qual é a matéria (elemento físico) usada no sacramento do Batismo?", options: ["Óleo","Água","Vinho","Sal"], correct: 1,
-      explain: "A água é derramada sobre a cabeça (ou por imersão) junto com a fórmula trinitária, constituindo o Batismo." },
-    { q: "Como se chama o sacramento pelo qual homens são ordenados diáconos, padres ou bispos?", options: ["Crisma","Ordem","Matrimônio","Unção"], correct: 1,
-      explain: "O sacramento da Ordem confere os graus do ministério ordenado: diaconato, presbiterado e episcopado." },
-    { q: "Qual sacramento é administrado a pessoas gravemente doentes ou em risco de morte?", options: ["Reconciliação","Unção dos Enfermos","Crisma","Batismo"], correct: 1,
-      explain: "A Unção dos Enfermos oferece graça, conforto e, se for da vontade de Deus, cura, aos que estão gravemente doentes." },
-    { q: "O que caracteriza o Matrimônio católico segundo a doutrina da Igreja?", options: [
-        "Pode ser dissolvido por qualquer motivo grave",
-        "É uma aliança una e indissolúvel entre batizados",
-        "É apenas um contrato civil",
-        "É opcional para católicos praticantes" ], correct: 1,
-      explain: "A Igreja ensina que o Matrimônio sacramental é uma aliança permanente e exclusiva entre os cônjuges." }
+    { q: "Quantos sacramentos a Igreja Católica reconhece?", options: ["Cinco","Sete","Nove","Três"], correct: 1, explain: "São sete: Batismo, Confirmação, Eucaristia, Reconciliação, Unção dos Enfermos, Ordem e Matrimônio." },
+    { q: "O que significa a palavra 'Eucaristia'?", options: ["Sacrifício","Ação de graças","Comunhão","Oferenda"], correct: 1, explain: "Vem do grego 'eucharistia', que significa ação de graças." },
+    { q: "O que é a 'Transubstanciação'?", options: ["A transformação espiritual do fiel após a comunhão","A mudança da substância do pão e do vinho no Corpo e Sangue de Cristo","A passagem da alma para o Purgatório","A conversão de um não-católico à fé"], correct: 1, explain: "É o termo teológico para a conversão real do pão e do vinho no Corpo e Sangue de Cristo na Missa." },
+    { q: "Qual é o nome do sacramento também chamado de 'Penitência' ou 'Confissão'?", options: ["Crisma","Reconciliação","Unção dos Enfermos","Ordem"], correct: 1, explain: "O sacramento da Reconciliação (ou Confissão) perdoa os pecados cometidos após o Batismo." },
+    { q: "Qual sacramento só pode ser recebido uma vez e imprime 'caráter indelével' junto com o Batismo e a Ordem?", options: ["Unção dos Enfermos","Matrimônio","Confirmação (Crisma)","Reconciliação"], correct: 2, explain: "Batismo, Confirmação e Ordem imprimem um caráter espiritual permanente na alma, por isso não se repetem." },
+    { q: "Qual é a matéria (elemento físico) usada no sacramento do Batismo?", options: ["Óleo","Água","Vinho","Sal"], correct: 1, explain: "A água é derramada sobre a cabeça (ou por imersão) junto com a fórmula trinitária, constituindo o Batismo." },
+    { q: "Como se chama o sacramento pelo qual homens são ordenados diáconos, padres ou bispos?", options: ["Crisma","Ordem","Matrimônio","Unção"], correct: 1, explain: "O sacramento da Ordem confere os graus do ministério ordenado: diaconato, presbiterado e episcopado." },
+    { q: "Qual sacramento é administrado a pessoas gravemente doentes ou em risco de morte?", options: ["Reconciliação","Unção dos Enfermos","Crisma","Batismo"], correct: 1, explain: "A Unção dos Enfermos oferece graça, conforto e, se for da vontade de Deus, cura, aos que estão gravemente doentes." },
+    { q: "O que caracteriza o Matrimônio católico segundo a doutrina da Igreja?", options: ["Pode ser dissolvido por qualquer motivo grave","É uma aliança una e indissolúvel entre batizados","É apenas um contrato civil","É opcional para católicos praticantes"], correct: 1, explain: "A Igreja ensina que o Matrimônio sacramental é uma aliança permanente e exclusiva entre os cônjuges." }
   ],
   "Bíblia": [
-    { q: "Qual concílio definiu o cânon oficial dos livros da Bíblia para os católicos?", options: ["Concílio de Trento","Concílio de Niceia","Concílio Vaticano I","Concílio de Éfeso"], correct: 0,
-      explain: "O Concílio de Trento (1546) confirmou definitivamente o cânon de 73 livros diante da Reforma Protestante." },
-    { q: "Quantos livros tem a Bíblia Católica, no total?", options: ["66","73","80","27"], correct: 1,
-      explain: "São 46 livros no Antigo Testamento e 27 no Novo Testamento, totalizando 73." },
-    { q: "Qual é a oração que Jesus ensinou diretamente aos apóstolos?", options: ["Ave Maria","Salve Rainha","Pai Nosso","Credo"], correct: 2,
-      explain: "O Pai Nosso está registrado nos Evangelhos de Mateus (6,9-13) e Lucas (11,2-4)." },
-    { q: "Quem escreveu a maior parte das cartas do Novo Testamento?", options: ["São Pedro","São João","São Paulo","São Tiago"], correct: 2,
-      explain: "São Paulo é autor de 13 das 21 cartas (epístolas) do Novo Testamento." },
-    { q: "Em que cidade nasceu Jesus Cristo, segundo os Evangelhos?", options: ["Nazaré","Jerusalém","Belém","Cafarnaum"], correct: 2,
-      explain: "Jesus nasceu em Belém da Judeia, cumprindo a profecia de Miqueias 5,2." },
-    { q: "Quantos dias durou a chuva do dilúvio na história de Noé, segundo o Gênesis?", options: ["7 dias","40 dias","100 dias","12 dias"], correct: 1,
-      explain: "Gênesis 7,12 relata que choveu sobre a terra durante 40 dias e 40 noites." },
-    { q: "Quantos evangelhos fazem parte do Novo Testamento?", options: ["Três","Quatro","Cinco","Sete"], correct: 1,
-      explain: "São quatro Evangelhos canônicos: Mateus, Marcos, Lucas e João." },
-    { q: "Qual é o primeiro livro da Bíblia?", options: ["Êxodo","Gênesis","Levítico","Salmos"], correct: 1,
-      explain: "Gênesis é o primeiro livro do Antigo Testamento, narrando a criação e as origens do povo de Israel." },
-    { q: "Em qual monte Moisés recebeu os Dez Mandamentos, segundo o Êxodo?", options: ["Monte Sinai","Monte Tabor","Monte das Oliveiras","Monte Carmelo"], correct: 0,
-      explain: "Moisés recebeu as Tábuas da Lei no Monte Sinai, conforme relatado em Êxodo 19-20." },
-    { q: "Quem traiu Jesus por trinta moedas de prata, segundo os Evangelhos?", options: ["Pedro","Tomé","Judas Iscariotes","Barrabás"], correct: 2,
-      explain: "Judas Iscariotes entregou Jesus às autoridades por trinta moedas de prata (Mateus 26,14-16)." }
+    { q: "Qual concílio definiu o cânon oficial dos livros da Bíblia para os católicos?", options: ["Concílio de Trento","Concílio de Niceia","Concílio Vaticano I","Concílio de Éfeso"], correct: 0, explain: "O Concílio de Trento (1546) confirmou definitivamente o cânon de 73 livros diante da Reforma Protestante." },
+    { q: "Quantos livros tem a Bíblia Católica, no total?", options: ["66","73","80","27"], correct: 1, explain: "São 46 livros no Antigo Testamento e 27 no Novo Testamento, totalizando 73." },
+    { q: "Qual é a oração que Jesus ensinou diretamente aos apóstolos?", options: ["Ave Maria","Salve Rainha","Pai Nosso","Credo"], correct: 2, explain: "O Pai Nosso está registrado nos Evangelhos de Mateus (6,9-13) e Lucas (11,2-4)." },
+    { q: "Quem escreveu a maior parte das cartas do Novo Testamento?", options: ["São Pedro","São João","São Paulo","São Tiago"], correct: 2, explain: "São Paulo é autor de 13 das 21 cartas (epístolas) do Novo Testamento." },
+    { q: "Em que cidade nasceu Jesus Cristo, segundo os Evangelhos?", options: ["Nazaré","Jerusalém","Belém","Cafarnaum"], correct: 2, explain: "Jesus nasceu em Belém da Judeia, cumprindo a profecia de Miqueias 5,2." },
+    { q: "Quantos dias durou a chuva do dilúvio na história de Noé, segundo o Gênesis?", options: ["7 dias","40 dias","100 dias","12 dias"], correct: 1, explain: "Gênesis 7,12 relata que choveu sobre a terra durante 40 dias e 40 noites." },
+    { q: "Quantos evangelhos fazem parte do Novo Testamento?", options: ["Três","Quatro","Cinco","Sete"], correct: 1, explain: "São quatro Evangelhos canônicos: Mateus, Marcos, Lucas e João." },
+    { q: "Qual é o primeiro livro da Bíblia?", options: ["Êxodo","Gênesis","Levítico","Salmos"], correct: 1, explain: "Gênesis é o primeiro livro do Antigo Testamento, narrando a criação e as origens do povo de Israel." },
+    { q: "Em qual monte Moisés recebeu os Dez Mandamentos, segundo o Êxodo?", options: ["Monte Sinai","Monte Tabor","Monte das Oliveiras","Monte Carmelo"], correct: 0, explain: "Moisés recebeu as Tábuas da Lei no Monte Sinai, conforme relatado em Êxodo 19-20." },
+    { q: "Quem traiu Jesus por trinta moedas de prata, segundo os Evangelhos?", options: ["Pedro","Tomé","Judas Iscariotes","Barrabás"], correct: 2, explain: "Judas Iscariotes entregou Jesus às autoridades por trinta moedas de prata (Mateus 26,14-16)." }
   ],
   "Santos": [
-    { q: "Quem foi o primeiro Papa, segundo a Tradição católica?", options: ["São Paulo","São João","São Pedro","Santo André"], correct: 2,
-      explain: "São Pedro é considerado o primeiro Papa, a partir do texto de Mateus 16,18." },
-    { q: "Qual santo é conhecido como 'Doutor Angélico'?", options: ["Santo Agostinho","São Tomás de Aquino","São Boaventura","São Jerônimo"], correct: 1,
-      explain: "São Tomás de Aquino, autor da Suma Teológica, recebeu esse título por sua obra filosófico-teológica." },
-    { q: "Qual arcanjo anunciou a Maria que ela seria a mãe de Jesus?", options: ["Miguel","Rafael","Gabriel","Uriel"], correct: 2,
-      explain: "O Arcanjo Gabriel apareceu a Maria na Anunciação (Lucas 1,26-38)." },
-    { q: "Qual santo fundou a Ordem dos Frades Menores (franciscanos)?", options: ["São Domingos","São Francisco de Assis","Santo Inácio de Loyola","São Bento"], correct: 1,
-      explain: "São Francisco de Assis fundou a Ordem Franciscana no início do século XIII, com voto de pobreza radical." },
-    { q: "Quem fundou a Companhia de Jesus (jesuítas)?", options: ["Santo Inácio de Loyola","São Filipe Néri","São Francisco Xavier","São Carlos Borromeu"], correct: 0,
-      explain: "Santo Inácio de Loyola fundou a Companhia de Jesus em 1540, aprovada pelo Papa Paulo III." },
-    { q: "Qual santa brasileira foi canonizada em 2002, primeira santa nascida no Brasil?", options: ["Santa Dulce dos Pobres","Santa Paulina","Santa Teresinha","Santa Rita de Cássia"], correct: 1,
-      explain: "Santa Paulina (Amábile Lucia Visintainer) foi canonizada em 2002 pelo Papa João Paulo II, sendo a primeira santa nascida no Brasil." },
-    { q: "Qual santo é padroeiro dos animais e da ecologia, com festa celebrada em 4 de outubro?", options: ["São Jorge","São Francisco de Assis","Santo Antônio","São Bento"], correct: 1,
-      explain: "São Francisco de Assis é o padroeiro da ecologia, conhecido por seu amor à criação, expresso no 'Cântico das Criaturas'." },
-    { q: "Quem é considerado o 'Doutor de Israel' e traduziu a Bíblia para o latim (a Vulgata)?", options: ["Santo Agostinho","São Jerônimo","São Beda","São Basílio"], correct: 1,
-      explain: "São Jerônimo traduziu as Escrituras para o latim no século IV, produzindo a Vulgata, texto oficial da Igreja por séculos." },
-    { q: "Qual santa é conhecida por sua 'pequena via' de simplicidade e confiança em Deus?", options: ["Santa Teresa d'Ávila","Santa Teresinha do Menino Jesus","Santa Catarina de Sena","Santa Clara de Assis"], correct: 1,
-      explain: "Santa Teresinha de Lisieux (do Menino Jesus) ficou famosa por sua espiritualidade da 'pequena via', hoje Doutora da Igreja." }
+    { q: "Quem foi o primeiro Papa, segundo a Tradição católica?", options: ["São Paulo","São João","São Pedro","Santo André"], correct: 2, explain: "São Pedro é considerado o primeiro Papa, a partir do texto de Mateus 16,18." },
+    { q: "Qual santo é conhecido como 'Doutor Angélico'?", options: ["Santo Agostinho","São Tomás de Aquino","São Boaventura","São Jerônimo"], correct: 1, explain: "São Tomás de Aquino, autor da Suma Teológica, recebeu esse título por sua obra filosófico-teológica." },
+    { q: "Qual arcanjo anunciou a Maria que ela seria a mãe de Jesus?", options: ["Miguel","Rafael","Gabriel","Uriel"], correct: 2, explain: "O Arcanjo Gabriel apareceu a Maria na Anunciação (Lucas 1,26-38)." },
+    { q: "Qual santo fundou a Ordem dos Frades Menores (franciscanos)?", options: ["São Domingos","São Francisco de Assis","Santo Inácio de Loyola","São Bento"], correct: 1, explain: "São Francisco de Assis fundou a Ordem Franciscana no início do século XIII, com voto de pobreza radical." },
+    { q: "Quem fundou a Companhia de Jesus (jesuítas)?", options: ["Santo Inácio de Loyola","São Filipe Néri","São Francisco Xavier","São Carlos Borromeu"], correct: 0, explain: "Santo Inácio de Loyola fundou a Companhia de Jesus em 1540, aprovada pelo Papa Paulo III." },
+    { q: "Qual santa brasileira foi canonizada em 2002, primeira santa nascida no Brasil?", options: ["Santa Dulce dos Pobres","Santa Paulina","Santa Teresinha","Santa Rita de Cássia"], correct: 1, explain: "Santa Paulina (Amábile Lucia Visintainer) foi canonizada em 2002 pelo Papa João Paulo II, sendo a primeira santa nascida no Brasil." },
+    { q: "Qual santo é padroeiro dos animais e da ecologia, com festa celebrada em 4 de outubro?", options: ["São Jorge","São Francisco de Assis","Santo Antônio","São Bento"], correct: 1, explain: "São Francisco de Assis é o padroeiro da ecologia, conhecido por seu amor à criação, expresso no 'Cântico das Criaturas'." },
+    { q: "Quem é considerado o 'Doutor de Israel' e traduziu a Bíblia para o latim (a Vulgata)?", options: ["Santo Agostinho","São Jerônimo","São Beda","São Basílio"], correct: 1, explain: "São Jerônimo traduziu as Escrituras para o latim no século IV, produzindo a Vulgata, texto oficial da Igreja por séculos." },
+    { q: "Qual santa é conhecida por sua 'pequena via' de simplicidade e confiança em Deus?", options: ["Santa Teresa d'Ávila","Santa Teresinha do Menino Jesus","Santa Catarina de Sena","Santa Clara de Assis"], correct: 1, explain: "Santa Teresinha de Lisieux (do Menino Jesus) ficou famosa por sua espiritualidade da 'pequena via', hoje Doutora da Igreja." }
   ],
   "Papas e Concílios": [
-    { q: "Em que anos ocorreu o Concílio Vaticano II?", options: ["1869–1870","1962–1965","1545–1563","1917–1920"], correct: 1,
-      explain: "O Concílio Vaticano II foi realizado de 1962 a 1965, reunindo bispos de todo o mundo na Basílica de São Pedro." },
-    { q: "Qual Papa convocou o Concílio Vaticano II e qual concluiu os trabalhos?", options: [
-        "João XXIII convocou; Paulo VI concluiu",
-        "Pio XII convocou; João XXIII concluiu",
-        "Paulo VI convocou; João Paulo II concluiu",
-        "João XXIII convocou e também concluiu" ], correct: 0,
-      explain: "João XXIII convocou o Concílio em 1959 e abriu os trabalhos em 1962; após sua morte em 1963, Paulo VI conduziu o Concílio até seu encerramento em 1965." },
-    { q: "Quantos documentos foram produzidos ao final do Concílio Vaticano II?", options: ["8","16","24","5"], correct: 1,
-      explain: "Foram produzidos 16 documentos: 4 Constituições, 9 Decretos e 3 Declarações." },
-    { q: "Qual concílio foi convocado em resposta à Reforma Protestante, no século XVI?", options: ["Concílio de Trento","Concílio Vaticano I","Concílio de Niceia","Concílio de Latrão"], correct: 0,
-      explain: "O Concílio de Trento (1545–1563) foi a resposta da Igreja Católica à Reforma Protestante, reafirmando doutrinas e reformando disciplinas internas." },
-    { q: "Quem foi o Papa escolhido em 2013, o primeiro papa jesuíta e primeiro latino-americano da história?", options: ["Bento XVI","João Paulo II","Francisco","João Paulo I"], correct: 2,
-      explain: "O Papa Francisco (Jorge Mario Bergoglio) foi eleito em 2013, sendo o primeiro papa jesuíta e o primeiro latino-americano." },
-    { q: "Qual Papa renunciou ao papado em 2013, algo raro na história da Igreja?", options: ["João Paulo II","Bento XVI","Paulo VI","João XXIII"], correct: 1,
-      explain: "Bento XVI renunciou em fevereiro de 2013, citando falta de forças físicas e mentais para o ministério." },
-    { q: "Quantos anos durou o pontificado de São João Paulo II, um dos mais longos da história?", options: ["10 anos","19 anos","27 anos","35 anos"], correct: 2,
-      explain: "João Paulo II foi Papa de 1978 a 2005, cerca de 27 anos, um dos pontificados mais longos da história." },
-    { q: "Como se chama a reunião de cardeais responsável por eleger um novo Papa?", options: ["Sínodo","Conclave","Consistório","Concílio"], correct: 1,
-      explain: "O Conclave é a reunião fechada dos cardeais eleitores reunidos na Capela Sistina para eleger o novo Papa." },
-    { q: "Qual é o nome oficial que o Papa recebe como Bispo de Roma e sucessor de São Pedro?", options: ["Sumo Pontífice","Patriarca","Metropolita","Núncio"], correct: 0,
-      explain: "'Sumo Pontífice' é um dos títulos oficiais do Papa, junto com Bispo de Roma e Vigário de Cristo." }
+    { q: "Em que anos ocorreu o Concílio Vaticano II?", options: ["1869–1870","1962–1965","1545–1563","1917–1920"], correct: 1, explain: "O Concílio Vaticano II foi realizado de 1962 a 1965, reunindo bispos de todo o mundo na Basílica de São Pedro." },
+    { q: "Qual Papa convocou o Concílio Vaticano II e qual concluiu os trabalhos?", options: ["João XXIII convocou; Paulo VI concluiu","Pio XII convocou; João XXIII concluiu","Paulo VI convocou; João Paulo II concluiu","João XXIII convocou e também concluiu"], correct: 0, explain: "João XXIII convocou o Concílio em 1959 e abriu os trabalhos em 1962; após sua morte em 1963, Paulo VI conduziu o Concílio até seu encerramento em 1965." },
+    { q: "Quantos documentos foram produzidos ao final do Concílio Vaticano II?", options: ["8","16","24","5"], correct: 1, explain: "Foram produzidos 16 documentos: 4 Constituições, 9 Decretos e 3 Declarações." },
+    { q: "Qual concílio foi convocado em resposta à Reforma Protestante, no século XVI?", options: ["Concílio de Trento","Concílio Vaticano I","Concílio de Niceia","Concílio de Latrão"], correct: 0, explain: "O Concílio de Trento (1545–1563) foi a resposta da Igreja Católica à Reforma Protestante, reafirmando doutrinas e reformando disciplinas internas." },
+    { q: "Quem foi o Papa escolhido em 2013, o primeiro papa jesuíta e primeiro latino-americano da história?", options: ["Bento XVI","João Paulo II","Francisco","João Paulo I"], correct: 2, explain: "O Papa Francisco (Jorge Mario Bergoglio) foi eleito em 2013, sendo o primeiro papa jesuíta e o primeiro latino-americano." },
+    { q: "Qual Papa renunciou ao papado em 2013, algo raro na história da Igreja?", options: ["João Paulo II","Bento XVI","Paulo VI","João XXIII"], correct: 1, explain: "Bento XVI renunciou em fevereiro de 2013, citando falta de forças físicas e mentais para o ministério." },
+    { q: "Quantos anos durou o pontificado de São João Paulo II, um dos mais longos da história?", options: ["10 anos","19 anos","27 anos","35 anos"], correct: 2, explain: "João Paulo II foi Papa de 1978 a 2005, cerca de 27 anos, um dos pontificados mais longos da história." },
+    { q: "Como se chama a reunião de cardeais responsável por eleger um novo Papa?", options: ["Sínodo","Conclave","Consistório","Concílio"], correct: 1, explain: "O Conclave é a reunião fechada dos cardeais eleitores reunidos na Capela Sistina para eleger o novo Papa." },
+    { q: "Qual é o nome oficial que o Papa recebe como Bispo de Roma e sucessor de São Pedro?", options: ["Sumo Pontífice","Patriarca","Metropolita","Núncio"], correct: 0, explain: "'Sumo Pontífice' é um dos títulos oficiais do Papa, junto com Bispo de Roma e Vigário de Cristo." }
   ],
   "Maria e Dogmas": [
-    { q: "Qual é o dogma mariano celebrado em 8 de dezembro?", options: ["Assunção de Maria","Imaculada Conceição","Maternidade Divina","Visitação"], correct: 1,
-      explain: "A Imaculada Conceição afirma que Maria foi concebida sem o pecado original." },
-    { q: "Quantos mistérios tem o Rosário, incluindo os Luminosos?", options: ["12","15","20","25"], correct: 2,
-      explain: "São 20 mistérios: Gozosos, Luminosos, Dolorosos e Gloriosos (5 cada)." },
-    { q: "O dogma da Assunção de Maria afirma que:", options: [
-        "Maria nunca morreu",
-        "Maria foi elevada de corpo e alma ao Céu ao fim de sua vida terrena",
-        "Maria nasceu sem pecado original",
-        "Maria apareceu em Lourdes" ], correct: 1,
-      explain: "Definido em 1950 pelo Papa Pio XII, o dogma afirma que Maria foi assunta ao Céu em corpo e alma." },
-    { q: "Qual título dogmático reconhece Maria como mãe de Jesus, que é Deus e homem verdadeiro?", options: ["Rainha do Céu","Theotókos (Mãe de Deus)","Imaculada","Medianeira"], correct: 1,
-      explain: "O título de Theotókos ('Mãe de Deus') foi definido no Concílio de Éfeso, em 431." },
-    { q: "Em qual cidade portuguesa Nossa Senhora apareceu a três pastorinhos em 1917?", options: ["Lisboa","Fátima","Braga","Coimbra"], correct: 1,
-      explain: "As aparições de Fátima ocorreram em 1917 a Lúcia, Francisco e Jacinta, tornando-se um dos santuários marianos mais visitados do mundo." },
-    { q: "Qual é o mês tradicionalmente dedicado a Nossa Senhora no calendário litúrgico católico?", options: ["Março","Maio","Agosto","Outubro"], correct: 1,
-      explain: "Maio é tradicionalmente consagrado a Maria, com a prática popular do 'Mês de Maria'." },
-    { q: "Como se chama a oração mariana que começa com 'Deus vos salve, Rainha'?", options: ["Angelus","Salve Rainha","Magnificat","Memorare"], correct: 1,
-      explain: "A Salve Rainha é uma das orações marianas mais tradicionais, rezada ao final do Rosário." }
+    { q: "Qual é o dogma mariano celebrado em 8 de dezembro?", options: ["Assunção de Maria","Imaculada Conceição","Maternidade Divina","Visitação"], correct: 1, explain: "A Imaculada Conceição afirma que Maria foi concebida sem o pecado original." },
+    { q: "Quantos mistérios tem o Rosário, incluindo os Luminosos?", options: ["12","15","20","25"], correct: 2, explain: "São 20 mistérios: Gozosos, Luminosos, Dolorosos e Gloriosos (5 cada)." },
+    { q: "O dogma da Assunção de Maria afirma que:", options: ["Maria nunca morreu","Maria foi elevada de corpo e alma ao Céu ao fim de sua vida terrena","Maria nasceu sem pecado original","Maria apareceu em Lourdes"], correct: 1, explain: "Definido em 1950 pelo Papa Pio XII, o dogma afirma que Maria foi assunta ao Céu em corpo e alma." },
+    { q: "Qual título dogmático reconhece Maria como mãe de Jesus, que é Deus e homem verdadeiro?", options: ["Rainha do Céu","Theotókos (Mãe de Deus)","Imaculada","Medianeira"], correct: 1, explain: "O título de Theotókos ('Mãe de Deus') foi definido no Concílio de Éfeso, em 431." },
+    { q: "Em qual cidade portuguesa Nossa Senhora apareceu a três pastorinhos em 1917?", options: ["Lisboa","Fátima","Braga","Coimbra"], correct: 1, explain: "As aparições de Fátima ocorreram em 1917 a Lúcia, Francisco e Jacinta, tornando-se um dos santuários marianos mais visitados do mundo." },
+    { q: "Qual é o mês tradicionalmente dedicado a Nossa Senhora no calendário litúrgico católico?", options: ["Março","Maio","Agosto","Outubro"], correct: 1, explain: "Maio é tradicionalmente consagrado a Maria, com a prática popular do 'Mês de Maria'." },
+    { q: "Como se chama a oração mariana que começa com 'Deus vos salve, Rainha'?", options: ["Angelus","Salve Rainha","Magnificat","Memorare"], correct: 1, explain: "A Salve Rainha é uma das orações marianas mais tradicionais, rezada ao final do Rosário." }
   ],
   "Doutrina Geral": [
-    { q: "Qual é o nome do documento principal que resume a doutrina católica atual?", options: ["Suma Teológica","Catecismo da Igreja Católica","Código de Direito Canônico","Confissões de Santo Agostinho"], correct: 1,
-      explain: "O Catecismo da Igreja Católica, publicado em 1992, organiza toda a doutrina de forma sistemática." },
-    { q: "O que é o Purgatório, segundo a doutrina católica?", options: [
-        "Um segundo inferno, mais leve",
-        "Um estado de purificação para quem morre em graça mas ainda precisa se purificar",
-        "Um lugar onde as almas ficam para sempre",
-        "Um conceito que a Igreja já abandonou" ], correct: 1,
-      explain: "É um estado transitório de purificação antes de entrar plenamente na presença de Deus." },
-    { q: "O que significa 'Igreja apostólica', um dos quatro atributos da Igreja no Credo?", options: [
-        "Que ela tem apóstolos vivos hoje",
-        "Que ela mantém a fé e a sucessão transmitidas pelos apóstolos",
-        "Que ela foi fundada só por São Pedro",
-        "Que ela envia missionários" ], correct: 1,
-      explain: "Apostólica significa que a Igreja preserva a doutrina e a sucessão vinda diretamente dos apóstolos de Cristo." },
-    { q: "O que a Igreja entende por 'Comunhão dos Santos'?", options: [
-        "Apenas os santos canonizados",
-        "A união espiritual entre os fiéis vivos, as almas do Purgatório e os santos no Céu",
-        "Um sacramento específico",
-        "Uma festa litúrgica anual" ], correct: 1,
-      explain: "É a união espiritual de todos os batizados — na terra, no Purgatório e no Céu — unidos em Cristo." },
-    { q: "O que a Igreja celebra na Quarta-feira de Cinzas?", options: ["O fim da Quaresma","O início da Quaresma","A Ressurreição","A Ascensão"], correct: 1,
-      explain: "A Quarta-feira de Cinzas marca o início dos 40 dias de Quaresma, tempo de penitência antes da Páscoa." },
-    { q: "Quais são as três virtudes teologais na doutrina católica?", options: [
-        "Prudência, Justiça e Fortaleza",
-        "Fé, Esperança e Caridade",
-        "Humildade, Paciência e Castidade",
-        "Sabedoria, Ciência e Piedade" ], correct: 1,
-      explain: "Fé, Esperança e Caridade são as virtudes teologais, que têm Deus como origem e objeto direto." },
-    { q: "O que significa a palavra 'Advento', período que antecede o Natal?", options: ["Espera", "Vinda/Chegada", "Nascimento", "Anúncio"], correct: 1,
-      explain: "Advento vem do latim 'adventus', que significa vinda ou chegada — referindo-se à vinda de Cristo." },
-    { q: "Quantos mandamentos compõem o Decálogo entregue a Moisés?", options: ["Sete","Dez","Doze","Cinco"], correct: 1,
-      explain: "São Dez Mandamentos, base da lei moral revelada a Moisés no Monte Sinai." },
-    { q: "O que é a 'Graça Santificante' na doutrina católica?", options: [
-        "Um sacramento específico",
-        "O dom permanente que habilita a alma a viver com Deus e por Deus",
-        "Uma oração litúrgica",
-        "Um título dado a santos" ], correct: 1,
-      explain: "A Graça Santificante é o dom sobrenatural e permanente que nos torna partícipes da vida divina." }
+    { q: "Qual é o nome do documento principal que resume a doutrina católica atual?", options: ["Suma Teológica","Catecismo da Igreja Católica","Código de Direito Canônico","Confissões de Santo Agostinho"], correct: 1, explain: "O Catecismo da Igreja Católica, publicado em 1992, organiza toda a doutrina de forma sistemática." },
+    { q: "O que é o Purgatório, segundo a doutrina católica?", options: ["Um segundo inferno, mais leve","Um estado de purificação para quem morre em graça mas ainda precisa se purificar","Um lugar onde as almas ficam para sempre","Um conceito que a Igreja já abandonou"], correct: 1, explain: "É um estado transitório de purificação antes de entrar plenamente na presença de Deus." },
+    { q: "O que significa 'Igreja apostólica', um dos quatro atributos da Igreja no Credo?", options: ["Que ela tem apóstolos vivos hoje","Que ela mantém a fé e a sucessão transmitidas pelos apóstolos","Que ela foi fundada só por São Pedro","Que ela envia missionários"], correct: 1, explain: "Apostólica significa que a Igreja preserva a doutrina e a sucessão vinda diretamente dos apóstolos de Cristo." },
+    { q: "O que a Igreja entende por 'Comunhão dos Santos'?", options: ["Apenas os santos canonizados","A união espiritual entre os fiéis vivos, as almas do Purgatório e os santos no Céu","Um sacramento específico","Uma festa litúrgica anual"], correct: 1, explain: "É a união espiritual de todos os batizados — na terra, no Purgatório e no Céu — unidos em Cristo." },
+    { q: "O que a Igreja celebra na Quarta-feira de Cinzas?", options: ["O fim da Quaresma","O início da Quaresma","A Ressurreição","A Ascensão"], correct: 1, explain: "A Quarta-feira de Cinzas marca o início dos 40 dias de Quaresma, tempo de penitência antes da Páscoa." },
+    { q: "Quais são as três virtudes teologais na doutrina católica?", options: ["Prudência, Justiça e Fortaleza","Fé, Esperança e Caridade","Humildade, Paciência e Castidade","Sabedoria, Ciência e Piedade"], correct: 1, explain: "Fé, Esperança e Caridade são as virtudes teologais, que têm Deus como origem e objeto direto." },
+    { q: "O que significa a palavra 'Advento', período que antecede o Natal?", options: ["Espera", "Vinda/Chegada", "Nascimento", "Anúncio"], correct: 1, explain: "Advento vem do latim 'adventus', que significa vinda ou chegada — referindo-se à vinda de Cristo." },
+    { q: "Quantos mandamentos compõem o Decálogo entregue a Moisés?", options: ["Sete","Dez","Doze","Cinco"], correct: 1, explain: "São Dez Mandamentos, base da lei moral revelada a Moisés no Monte Sinai." },
+    { q: "O que é a 'Graça Santificante' na doutrina católica?", options: ["Um sacramento específico","O dom permanente que habilita a alma a viver com Deus e por Deus","Uma oração litúrgica","Um título dado a santos"], correct: 1, explain: "A Graça Santificante é o dom sobrenatural e permanente que nos torna partícipes da vida divina." }
   ]
 };
 
+// ============ BANCO KIDS (mais simples) ============
+const KIDS_BANK = [
+  { q: "Quem é o filho de Deus que veio ao mundo para nos salvar?", options: ["São Pedro","Jesus","Moisés","Um anjo"], correct: 1, explain: "Jesus é o Filho de Deus, que se fez homem para nos salvar." },
+  { q: "Onde Jesus nasceu?", options: ["Numa manjedoura em Belém","Num palácio","Numa igreja","No deserto"], correct: 0, explain: "Jesus nasceu numa manjedoura, em Belém, porque não havia lugar na hospedaria." },
+  { q: "Como se chama a mamãe de Jesus?", options: ["Marta","Maria","Isabel","Ana"], correct: 1, explain: "Maria é a mãe de Jesus, e por isso é chamada de Mãe de Deus." },
+  { q: "O que fazemos quando entramos numa igreja católica, tocando a água benta?", options: ["Sinal da cruz","Um aceno","Uma reverência","Tiramos o sapato"], correct: 0, explain: "Fazemos o Sinal da Cruz, lembrando do nosso Batismo, em nome do Pai, do Filho e do Espírito Santo." },
+  { q: "Quantos amigos próximos (apóstolos) Jesus escolheu para segui-lo?", options: ["Sete","Doze","Vinte","Três"], correct: 1, explain: "Jesus escolheu doze apóstolos para segui-lo e aprender com ele." },
+  { q: "Qual é o dia da semana em que os católicos vão à Missa?", options: ["Segunda-feira","Domingo","Sexta-feira","Sábado"], correct: 1, explain: "O Domingo é o Dia do Senhor, quando celebramos a Ressurreição de Jesus." },
+  { q: "Qual animal simboliza o Espírito Santo?", options: ["Leão","Pomba","Cordeiro","Peixe"], correct: 1, explain: "A pomba simboliza o Espírito Santo, como apareceu no Batismo de Jesus." },
+  { q: "O que Jesus fez para mostrar seu amor por todos nós?", options: ["Escreveu um livro","Morreu na cruz e ressuscitou","Construiu uma casa","Viajou pelo mundo"], correct: 1, explain: "Jesus morreu na cruz e ressuscitou para nos salvar e mostrar seu amor por nós." },
+  { q: "Como se chama a oração mais importante que Jesus ensinou?", options: ["Ave Maria","Pai Nosso","Credo","Salve Rainha"], correct: 1, explain: "O Pai Nosso foi ensinado pelo próprio Jesus aos seus discípulos." },
+  { q: "O que ganhamos no Batismo?", options: ["Um presente de aniversário","Somos filhos de Deus e entramos na Igreja","Uma medalha","Um nome novo apenas"], correct: 1, explain: "No Batismo nos tornamos filhos de Deus e membros da Igreja, e recebemos a graça de Deus." }
+];
+
+// ============ NAVEGAÇÃO KIDS ============
+document.getElementById('kids-intro-view').querySelector('p').innerHTML =
+  `Perguntas mais simples sobre a fé, pensadas para crianças e para uso em catequese. São ${KIDS_BANK.length} perguntas fixas, sempre as mesmas.`;
+
+document.getElementById('kids-start-btn').addEventListener('click', () => {
+  quizQuestions = KIDS_BANK.map(item => ({ ...item, theme: 'Quiz Kids' }));
+  current = 0; score = 0; userAnswers.length = 0;
+  showView('quiz-view');
+  renderQuestion();
+});
+
+// ============ QUIZ GERAL (setup) ============
 const THEME_KEYS = Object.keys(BANK);
 const COUNT_OPTIONS = [5, 10, 15, 20, 30, 'all'];
 
@@ -461,23 +398,23 @@ startBtn.addEventListener('click', () => {
   });
   pool = shuffle(pool);
   const n = selectedCount === 'all' ? pool.length : Math.min(selectedCount, pool.length);
-  quizQuestions = pool.slice(0, n).map(item => {
-    const letters = item.options.map((opt, idx) => ({ opt, isCorrect: idx === item.correct }));
-    const shuffled = shuffle(letters);
-    return {
-      q: item.q,
-      theme: item.theme,
-      explain: item.explain,
-      options: shuffled.map(s => s.opt),
-      correct: shuffled.findIndex(s => s.isCorrect)
-    };
-  });
+  quizQuestions = pool.slice(0, n).map(item => buildShuffledQuestion(item));
   current = 0; score = 0; userAnswers.length = 0;
-  document.getElementById('setup-view').classList.add('hidden');
-  document.getElementById('quiz-view').classList.remove('hidden');
+  showView('quiz-view');
   renderQuestion();
 });
 
+function buildShuffledQuestion(item){
+  const letters = item.options.map((opt, idx) => ({ opt, isCorrect: idx === item.correct }));
+  const shuffled = shuffle(letters);
+  return {
+    q: item.q, theme: item.theme, explain: item.explain,
+    options: shuffled.map(s => s.opt),
+    correct: shuffled.findIndex(s => s.isCorrect)
+  };
+}
+
+// ============ MOTOR DO QUIZ (compartilhado) ============
 const questionText = document.getElementById('question-text');
 const optionsContainer = document.getElementById('options-container');
 const feedbackText = document.getElementById('feedback-text');
@@ -544,8 +481,7 @@ nextBtn.addEventListener('click', () => {
 });
 
 function showResults(){
-  document.getElementById('quiz-view').classList.add('hidden');
-  document.getElementById('result-view').classList.remove('hidden');
+  showView('result-view');
   document.getElementById('final-score').textContent = score;
   document.getElementById('final-of').textContent = `/ ${quizQuestions.length}`;
 
@@ -579,12 +515,138 @@ function showResults(){
 
 document.getElementById('restart-btn').addEventListener('click', () => {
   clearTimeout(autoAdvanceTimer);
-  document.getElementById('result-view').classList.add('hidden');
-  document.getElementById('setup-view').classList.remove('hidden');
-  renderSetup();
+  showView('hub-view');
 });
 
 renderSetup();
+
+// ============ PERGUNTA DO DIA ============
+// Calendário de efemérides: chave "MM-DD" -> { label, q }
+// Datas fixas verificadas (festas de guarda, solenidades e eventos históricos da Igreja).
+// Cobertura ainda parcial — dias sem entrada usam uma pergunta do banco geral, escolhida pela data.
+const FEAST_CALENDAR = {
+  "01-01": { label: "Solenidade de Santa Maria, Mãe de Deus",
+    q: { q: "O que a Igreja celebra em 1º de janeiro?", options: ["O Batismo de Jesus","Solenidade de Santa Maria, Mãe de Deus","A Epifania do Senhor","A Sagrada Família"], correct: 1,
+      explain: "Em 1º de janeiro, oitava do Natal, a Igreja celebra Maria como Mãe de Deus (Theotókos)." } },
+  "01-06": { label: "Epifania do Senhor",
+    q: { q: "O que a Epifania do Senhor celebra?", options: ["A Ressurreição de Jesus","A visita dos Reis Magos ao Menino Jesus","O Batismo de Jesus","A Anunciação"], correct: 1,
+      explain: "A Epifania celebra a manifestação de Jesus aos povos, simbolizada pela visita dos Reis Magos." } },
+  "02-02": { label: "Apresentação do Senhor",
+    q: { q: "O que se celebra na Apresentação do Senhor, em 2 de fevereiro?", options: ["O nascimento de Jesus","A apresentação de Jesus no Templo, 40 dias após o nascimento","O Batismo de Jesus","A fuga para o Egito"], correct: 1,
+      explain: "Seguindo a lei judaica, Maria e José apresentaram Jesus no Templo 40 dias após seu nascimento." } },
+  "03-19": { label: "Solenidade de São José",
+    q: { q: "Quem é celebrado em 19 de março, como esposo de Maria e padroeiro da Igreja Universal?", options: ["São Pedro","São José","São João Batista","São Paulo"], correct: 1,
+      explain: "São José, esposo de Maria e pai adotivo de Jesus, é padroeiro da Igreja Universal, celebrado em 19 de março." } },
+  "03-25": { label: "Anunciação do Senhor",
+    q: { q: "O que a Anunciação, celebrada em 25 de março, recorda?", options: ["A Ressurreição de Jesus","O anúncio do Arcanjo Gabriel a Maria","A Ascensão de Jesus","O Pentecostes"], correct: 1,
+      explain: "Em 25 de março, a Igreja recorda o momento em que o Arcanjo Gabriel anunciou a Maria que ela seria mãe do Salvador." } },
+  "05-13": { label: "Nossa Senhora de Fátima",
+    q: { q: "O que se celebra em 13 de maio?", options: ["Nossa Senhora de Fátima","Nossa Senhora de Lourdes","Nossa Senhora Aparecida","Nossa Senhora do Carmo"], correct: 0,
+      explain: "Em 13 de maio celebra-se Nossa Senhora de Fátima, em memória das aparições marianas de 1917 em Portugal." } },
+  "06-24": { label: "Natividade de São João Batista",
+    q: { q: "De quem se celebra o nascimento em 24 de junho?", options: ["São João Batista","São Pedro","São Paulo","São Tiago"], correct: 0,
+      explain: "São João Batista, primo de Jesus e precursor do Messias, tem seu nascimento celebrado em 24 de junho." } },
+  "06-29": { label: "São Pedro e São Paulo",
+    q: { q: "Quais dois apóstolos são celebrados juntos em 29 de junho?", options: ["Pedro e André","Pedro e Paulo","Paulo e Tiago","João e Tiago"], correct: 1,
+      explain: "São Pedro e São Paulo, pilares da Igreja primitiva, são celebrados juntos em 29 de junho." } },
+  "07-25": { label: "São Tiago Maior",
+    q: { q: "Qual apóstolo, padroeiro da Espanha, é celebrado em 25 de julho?", options: ["São Tiago Maior","São Filipe","São Bartolomeu","São Simão"], correct: 0,
+      explain: "São Tiago Maior, um dos doze apóstolos, é padroeiro da Espanha e celebrado em 25 de julho." } },
+  "08-15": { label: "Assunção de Nossa Senhora",
+    q: { q: "O que se celebra em 15 de agosto?", options: ["Imaculada Conceição","Assunção de Nossa Senhora","Natividade de Maria","Apresentação de Maria"], correct: 1,
+      explain: "A Assunção celebra que Maria foi elevada de corpo e alma ao Céu ao fim de sua vida terrena." } },
+  "09-08": { label: "Natividade de Nossa Senhora",
+    q: { q: "O que se celebra em 8 de setembro?", options: ["Natividade de Nossa Senhora","Imaculada Conceição","Assunção de Maria","Apresentação de Maria"], correct: 0,
+      explain: "Em 8 de setembro celebra-se o nascimento de Maria, nove meses após sua Imaculada Conceição." } },
+  "09-14": { label: "Exaltação da Santa Cruz",
+    q: { q: "O que se celebra em 14 de setembro?", options: ["Exaltação da Santa Cruz","Sexta-feira Santa","Via-sacra","Domingo de Ramos"], correct: 0,
+      explain: "A Exaltação da Santa Cruz celebra a cruz como instrumento da salvação, associada à descoberta da relíquia no século IV." } },
+  "10-04": { label: "São Francisco de Assis",
+    q: { q: "Qual santo, padroeiro da ecologia, é celebrado em 4 de outubro?", options: ["Santo Antônio","São Francisco de Assis","São Domingos","Santo Inácio de Loyola"], correct: 1,
+      explain: "São Francisco de Assis, fundador dos franciscanos e padroeiro da ecologia, é celebrado em 4 de outubro." } },
+  "10-07": { label: "Nossa Senhora do Rosário",
+    q: { q: "O que se celebra em 7 de outubro?", options: ["Nossa Senhora do Rosário","Nossa Senhora Aparecida","Nossa Senhora de Fátima","Nossa Senhora das Graças"], correct: 0,
+      explain: "A festa de Nossa Senhora do Rosário, em 7 de outubro, está ligada à devoção da oração do Rosário." } },
+  "10-12": { label: "Nossa Senhora Aparecida",
+    q: { q: "Quem é a padroeira do Brasil, celebrada em 12 de outubro?", options: ["Nossa Senhora de Fátima","Nossa Senhora Aparecida","Nossa Senhora do Carmo","Nossa Senhora das Graças"], correct: 1,
+      explain: "Nossa Senhora Aparecida é a padroeira do Brasil, celebrada em 12 de outubro." } },
+  "11-01": { label: "Solenidade de Todos os Santos",
+    q: { q: "O que a Igreja celebra em 1º de novembro?", options: ["Finados","Todos os Santos","Todas as Almas","Cristo Rei"], correct: 1,
+      explain: "Todos os Santos celebra, num só dia, todos os santos que estão na glória de Deus, conhecidos ou não." } },
+  "11-02": { label: "Dia de Finados",
+    q: { q: "O que a Igreja celebra em 2 de novembro?", options: ["Todos os Santos","Comemoração de Todos os Fiéis Defuntos (Finados)","Cristo Rei","Assunção de Maria"], correct: 1,
+      explain: "Finados é o dia em que a Igreja reza especialmente pelas almas dos fiéis falecidos." } },
+  "12-08": { label: "Imaculada Conceição",
+    q: { q: "Qual dogma mariano é celebrado em 8 de dezembro?", options: ["Assunção de Maria","Imaculada Conceição","Maternidade Divina","Natividade de Maria"], correct: 1,
+      explain: "A Imaculada Conceição afirma que Maria foi concebida sem o pecado original, celebrada em 8 de dezembro." } },
+  "12-25": { label: "Natal do Senhor",
+    q: { q: "O que se celebra em 25 de dezembro?", options: ["Epifania","Natal do Senhor (nascimento de Jesus)","Apresentação do Senhor","Anunciação"], correct: 1,
+      explain: "O Natal celebra o nascimento de Jesus Cristo em Belém." } },
+  "10-11": { label: "Abertura do Concílio Vaticano II (1962)",
+    q: { q: "Que evento histórico da Igreja começou em 11 de outubro de 1962?", options: ["O Concílio de Trento","A abertura do Concílio Vaticano II","O Concílio Vaticano I","O Grande Jubileu"], correct: 1,
+      explain: "O Papa João XXIII abriu o Concílio Vaticano II em 11 de outubro de 1962, um marco na história recente da Igreja." } },
+  "03-13": { label: "Eleição do Papa Francisco (2013)",
+    q: { q: "Que evento aconteceu em 13 de março de 2013?", options: ["A renúncia de Bento XVI","A eleição do Papa Francisco","A morte de João Paulo II","A abertura do Concílio Vaticano II"], correct: 1,
+      explain: "Em 13 de março de 2013, o Cardeal Jorge Mario Bergoglio foi eleito Papa, adotando o nome Francisco." } },
+  "02-11": { label: "Renúncia do Papa Bento XVI anunciada (2013) / Nossa Senhora de Lourdes",
+    q: { q: "Além de Nossa Senhora de Lourdes, que evento raro foi anunciado em 11 de fevereiro de 2013?", options: ["A eleição de um novo Papa","O anúncio da renúncia do Papa Bento XVI","A abertura de um Concílio","A canonização de João Paulo II"], correct: 1,
+      explain: "Em 11 de fevereiro de 2013, Bento XVI anunciou sua renúncia ao papado, algo raro na história da Igreja." } }
+};
+
+function pad2(n){ return String(n).padStart(2, '0'); }
+
+function dayOfYear(d){
+  const start = new Date(d.getFullYear(), 0, 0);
+  const diff = d - start;
+  return Math.floor(diff / (1000 * 60 * 60 * 24));
+}
+
+const ALL_QUESTIONS_FLAT = Object.keys(BANK).flatMap(theme => BANK[theme].map(q => ({ ...q, theme })));
+
+function renderDaily(){
+  const today = new Date();
+  const key = `${pad2(today.getMonth()+1)}-${pad2(today.getDate())}`;
+  const feast = FEAST_CALENDAR[key];
+
+  let base, label;
+  if(feast){
+    base = { ...feast.q, theme: feast.label };
+    label = feast.label;
+  } else {
+    const idx = dayOfYear(today) % ALL_QUESTIONS_FLAT.length;
+    base = ALL_QUESTIONS_FLAT[idx];
+    label = `Tema de hoje: ${base.theme}`;
+  }
+  const item = buildShuffledQuestion(base);
+
+  const dateStr = today.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+  document.getElementById('daily-date').textContent = dateStr;
+  document.getElementById('daily-saint').textContent = feast ? feast.label : label;
+  document.getElementById('daily-question-text').textContent = item.q;
+
+  const container = document.getElementById('daily-options-container');
+  const feedback = document.getElementById('daily-feedback-text');
+  feedback.textContent = '';
+  container.innerHTML = '';
+  const letters = ['A','B','C','D'];
+  let dailyAnswered = false;
+  item.options.forEach((opt, idx2) => {
+    const btn = document.createElement('button');
+    btn.className = 'option';
+    btn.innerHTML = `<span class="letter">${letters[idx2]}</span><span>${opt}</span>`;
+    btn.addEventListener('click', () => {
+      if(dailyAnswered) return;
+      dailyAnswered = true;
+      const allOpts = container.querySelectorAll('.option');
+      allOpts.forEach(o => o.disabled = true);
+      const isCorrect = idx2 === item.correct;
+      allOpts[item.correct].classList.add('correct');
+      if(!isCorrect) allOpts[idx2].classList.add('wrong');
+      feedback.textContent = item.explain;
+    });
+    container.appendChild(btn);
+  });
+}
 </script>
 
 </body>
